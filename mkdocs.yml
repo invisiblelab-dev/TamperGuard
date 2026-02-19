@@ -1,0 +1,34 @@
+site_name: Modular-IO-Library
+docs_dir: docs/mkdocs
+site_dir: docs/mkdocs_static
+use_directory_urls: false
+
+markdown_extensions:
+  - toc
+  - tables
+  - fenced_code
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Configuration: config/README.md
+  - Shared Components: shared/README.md
+  - Tests: tests/README.md
+  - Examples:
+    - FUSE Filesystem: examples/fuse/README.md
+    - Invisible Storage: examples/invisible/README.md
+    - Storage Server: examples/storserver/README.md
+  - Storage Layers:
+    - Local Layer: layers/local/README.md
+    - Remote Layer: layers/remote/README.md
+    - Anti-Tampering Layer: layers/anti_tampering/README.md
+    - Compression Layer: layers/compression/README.md
+    - Block Align Layer: layers/block_align/README.md
+    - Demultiplexer Layer: layers/demultiplexer/README.md
+    - Invisible Storage Layer: layers/invisible_storage/README.md
+theme:
+  name: material

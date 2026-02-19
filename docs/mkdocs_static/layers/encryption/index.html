@@ -1,0 +1,1157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Encryption Layer - Modular-IO-Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#encryption-layer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-header__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Modular-IO-Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Encryption Layer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-nav__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Modular-IO-Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shared/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fuse/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUSE Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/invisible/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/storserver/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Layers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Storage Layers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anti_tampering/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anti-Tampering Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compression/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compression Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../block_align/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Align Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demultiplexer/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demultiplexer Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invisible_storage/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-direct-key-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Direct Key Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-vaultopenbao-integration-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: Vault/OpenBao Integration (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-encryption-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block Encryption Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-ciphers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Ciphers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported Ciphers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aes-256-xts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AES-256-XTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encryption-process-write-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encryption Process (Write Operations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-operations-decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Operations (Decryption)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iv-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="encryption-layer">Encryption Layer</h1>
+<p>The <strong>encryption layer</strong> provides transparent data encryption and decryption. It ensures <em>data confidentiality</em> by encrypting data before passing it to subsequent layers.</p>
+<h2 id="overview">Overview</h2>
+<p>The encryption layer features:</p>
+<ul>
+<li><strong>Transparent encryption/decryption</strong> on read/write operations</li>
+<li><strong>Block-based encryption</strong> with configurable block sizes</li>
+<li><strong>Random access support</strong> for efficient I/O at any offset</li>
+<li><strong>Extensible cipher support</strong> - currently implements AES-256-XTS only</li>
+<li><strong>Layer-agnostic design</strong> working with any underlying storage</li>
+<li><strong>Unique IVs per block</strong> for enhanced security, making it difficult to find inter-block patterns</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<p>The encryption layer supports two methods for providing the encryption key:</p>
+<h3 id="method-1-direct-key-configuration">Method 1: Direct Key Configuration</h3>
+<p>Provide the encryption key directly in the configuration file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[layer_name]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;encryption&quot;</span>
+<span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;next_layer_name&quot;</span><span class="w">              </span><span class="c1"># Name of the next layer in the chain</span>
+<span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4096</span><span class="w">                     </span><span class="c1"># Block size in bytes for encryption operations (default: 4096, minimum: 16)</span>
+<span class="n">encryption_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;your-64-char-hex-key-here&quot;</span><span class="w">  </span><span class="c1"># 64-character hexadecimal key (256 bits)</span>
+</code></pre></div>
+<h3 id="method-2-vaultopenbao-integration-recommended">Method 2: Vault/OpenBao Integration (Recommended)</h3>
+<p>Fetch the encryption key from a HashiCorp Vault or OpenBao server at initialization:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[layer_name]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;encryption&quot;</span>
+<span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;next_layer_name&quot;</span><span class="w">              </span><span class="c1"># Name of the next layer in the chain</span>
+<span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4096</span><span class="w">                     </span><span class="c1"># Block size in bytes</span>
+<span class="n">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;your-vault-token&quot;</span><span class="w">          </span><span class="c1"># Vault authentication token</span>
+<span class="n">vault_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost:8200&quot;</span><span class="w">  </span><span class="c1"># Vault server address</span>
+<span class="n">secret_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;v1/secret/data/myapp/encryption&quot;</span><span class="w">  </span><span class="c1"># Path to the secret in Vault</span>
+</code></pre></div>
+<p><strong>Vault Configuration Details:</strong></p>
+<ul>
+<li><strong>api_key</strong>: The Vault token used for authentication (sent as <code>X-Vault-Token</code> header)</li>
+<li><strong>vault_addr</strong>: The base URL of your Vault server</li>
+<li><strong>secret_path</strong>: Path to the secret in Vault (e.g., <code>v1/secret/data/myapp/encryption</code>)</li>
+</ul>
+<blockquote>
+<p><strong>OpenBao Integration</strong>: This feature has been tested and verified to work with OpenBao. See <a href="OPENBAO.html">OPENBAO.md</a> for a complete guide on deploying OpenBao and configuring it to provide encryption keys.</p>
+</blockquote>
+<p>The Vault server should return a JSON response with the key in the following format:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7da46e98f9643f34e8a4c68079816ec1ca9bbf4c68a3e50f842808848df50119&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Example Vault/OpenBao Setup:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Store encryption key in Vault/OpenBao</span>
+vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/myapp/encryption<span class="w"> </span><span class="nv">key</span><span class="o">=</span><span class="s2">&quot;7da46e98f9643f34e8a4c68079816ec1ca9bbf4c68a3e50f842808848df50119&quot;</span>
+
+<span class="c1"># Or using OpenBao (bao CLI)</span>
+bin/bao<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/myapp/encryption<span class="w"> </span><span class="nv">key</span><span class="o">=</span><span class="s2">&quot;7da46e98f9643f34e8a4c68079816ec1ca9bbf4c68a3e50f842808848df50119&quot;</span>
+
+<span class="c1"># Test retrieval</span>
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-Vault-Token: </span><span class="nv">$VAULT_TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span><span class="s2">&quot;</span><span class="nv">$VAULT_ADDR</span><span class="s2">/v1/secret/data/myapp/encryption&quot;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Security Note</strong>: Using Vault/OpenBao integration is the recommended approach for production environments as it centralizes key management and avoids storing sensitive keys in configuration files.</p>
+</blockquote>
+<h2 id="block-encryption-example">Block Encryption Example</h2>
+<div class="highlight"><pre><span></span><code>Data: 10KB write to file, Block Size: 4096 bytes
+
+┌────────┬─────────┬────────┐
+│ Block 0  │ Block 1  │ Block 2  │
+│ 4096 B   │ 4096 B   │ 1808 B   │
+│ IV=0     │ IV=1     │ IV=2     │
+└────────┴─────────┴────────┘
+     ↓          ↓          ↓
+  Encrypt    Encrypt    Encrypt
+     ↓          ↓          ↓
+┌────────┬─────────┬────────┐
+│Encrypted │Encrypted │Encrypted │
+│ 4096 B   │ 4096 B   │ 1808 B   │
+└────────┴─────────┴────────┘
+</code></pre></div>
+<h2 id="supported-ciphers">Supported Ciphers</h2>
+<h3 id="aes-256-xts">AES-256-XTS</h3>
+<ul>
+<li><strong>Algorithm</strong>: AES-256 in XTS mode (XEX-based tweaked-codebook mode with ciphertext stealing)</li>
+<li><strong>Key Size</strong>: 512 bits total (two 256-bit keys for XTS)</li>
+<li><strong>Block Size</strong>: Minimum 16 bytes (AES block size)</li>
+<li><strong>Characteristics</strong>:</li>
+<li>Designed specifically for disk/block encryption</li>
+<li>No ciphertext expansion (output size = input size)</li>
+<li>Supports independent block encryption/decryption (random access)</li>
+<li>Handles partial blocks ≥ 16 bytes</li>
+<li>NIST SP 800-38E compliant</li>
+</ul>
+<p><strong>Why XTS Mode?</strong> \
+XTS is specifically designed for storage encryption, providing strong security without ciphertext expansion, which is ideal for block-based storage systems requiring random access patterns.</p>
+<p><strong>XTS Mode Limitations</strong>
+   - <strong>No authentication</strong>: Does not provide integrity protection or tampering detection
+   - <strong>Minimum block size</strong>: Cannot encrypt data smaller than 16 bytes (AES block size)
+   - <strong>Pattern leakage</strong>: If not used properly, it is susceptible to traffic analysis and replay attacks
+   - <strong>Tweak dependency</strong>: Security relies on unique tweaks (IVs) per block</p>
+<h2 id="operational-behavior">Operational Behavior</h2>
+<h3 id="encryption-process-write-operations">Encryption Process (Write Operations)</h3>
+<ol>
+<li>Divide data into block-sized chunks</li>
+<li>For each block, generate unique IV from block counter</li>
+<li>Encrypt block using configured cipher</li>
+<li>Write encrypted blocks to underlying layer</li>
+</ol>
+<h3 id="read-operations-decryption">Read Operations (Decryption)</h3>
+<ol>
+<li>Read encrypted data from underlying layer</li>
+<li>Divide encrypted data into blocks based on the block size</li>
+<li>For each block, generate matching IV from block counter</li>
+<li>Decrypt block and return plaintext to application</li>
+</ol>
+<h3 id="iv-generation">IV Generation</h3>
+<p>Each block uses a unique initialization vector derived from its position:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">uint64_t</span><span class="w"> </span><span class="n">block_counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">iv</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">memcpy</span><span class="p">(</span><span class="n">iv</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">block_counter</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">));</span>
+<span class="n">block_counter</span><span class="o">++</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="security-limitations">Security Limitations</h2>
+<p><strong>NOT SUITABLE FOR PRODUCTION</strong>:</p>
+<ol>
+<li><strong>No Integrity Protection</strong>:</li>
+<li>Provides confidentiality only (AES-XTS does not authenticate data)</li>
+<li>
+<p>Encrypted data can be modified or corrupted without detection (<a href="../anti_tampering/index.html">Anti-Tampering Layer</a> can be used to add integrity protection)</p>
+</li>
+<li>
+<p><strong>Hardcoded Key</strong>:</p>
+</li>
+<li>All files encrypted with the same key</li>
+<li>
+<p>Key is visible in source code</p>
+</li>
+<li>
+<p><strong>Weak IV Generation</strong>:</p>
+</li>
+<li>IVs derived solely from block counters</li>
+<li>May not provide sufficient randomness for high-security</li>
+</ol>
+<h2 id="building-and-testing">Building and Testing</h2>
+<h3 id="build-commands">Build Commands</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Build all components</span>
+make<span class="w"> </span>build
+
+<span class="c1"># Build shared components only</span>
+make<span class="w"> </span>shared/build
+</code></pre></div>
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li><strong>OpenSSL</strong>: Required for cryptographic operations</li>
+<li><strong>libcurl</strong>: Required for Vault integration (fetching keys from remote server)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Debian/Ubuntu</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libssl-dev<span class="w"> </span>libcurl4-openssl-dev
+
+<span class="c1"># Fedora/RHEL</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>openssl-devel<span class="w"> </span>libcurl-devel
+
+<span class="c1"># macOS</span>
+brew<span class="w"> </span>install<span class="w"> </span>openssl<span class="w"> </span>curl
+</code></pre></div>
+<h2 id="future-work">Future Work</h2>
+<ul>
+<li>Key management integration</li>
+<li>Better IV generation</li>
+<li>Support any size by adding padding</li>
+<li>Key rotation support</li>
+<li>Support for additional ciphers and modes</li>
+<li>Parallel block processing</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

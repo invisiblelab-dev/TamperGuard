@@ -1,0 +1,12 @@
+root = "anti_tampering_layer"
+log_mode = "disabled" # options (case insensitive): disabled, screen, error, warn, info, debug #
+
+[local_layer]
+type = "local"
+
+[anti_tampering_layer]
+type = "anti_tampering"
+hashes_storage = "/tmp/hashes" # Note: Use your absolute path here #
+hash_layer = "local_layer"
+data_layer = "local_layer"
+algorithm = "sha256"

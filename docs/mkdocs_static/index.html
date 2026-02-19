@@ -1,0 +1,1817 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="config/index.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Modular-IO-Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modular-io-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Modular-IO-Library" class="md-header__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Modular-IO-Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Modular-IO-Library" class="md-nav__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Modular-IO-Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-libfuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing libfuse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing libfuse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install rust
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install rust">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Everything
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build Everything">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encryption-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encryption Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-tampering-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-Tampering Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-an-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run an Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-adding-a-new-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contribute: Adding a New Layer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markdown-file-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown File Discovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generated Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="shared/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tests/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/fuse/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUSE Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/invisible/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/storserver/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Layers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Storage Layers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/local/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/remote/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/anti_tampering/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anti-Tampering Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/compression/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compression Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/block_align/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Align Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/demultiplexer/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demultiplexer Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layers/invisible_storage/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-libfuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing libfuse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing libfuse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install rust
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install rust">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Everything
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build Everything">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encryption-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encryption Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-tampering-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-Tampering Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-an-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run an Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-adding-a-new-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contribute: Adding a New Layer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markdown-file-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown File Discovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generated Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="modular-io-library">Modular IO Library</h1>
+<p>A high-performance, modular I/O library for C applications featuring pluggable storage layers, data integrity verification, compression, and flexible configuration options.</p>
+<h2 id="project-structure">Project Structure</h2>
+<div class="highlight"><pre><span></span><code>├── 📁 layers/              # Pluggable I/O layers
+├── 📁 examples/            # Example applications  
+├── 📁 shared/              # Common utilities and types
+├── 📁 scripts/             # Scripts to test and benchmark
+├── 📁 tests/               # Unit and integration tests
+├── 📁 config/              # Configuration system
+├── 📁 lib/                 # External dependencies (submodules)
+└── 📄 config.toml.example  # Example configuration file
+</code></pre></div>
+<h2 id="content">Content</h2>
+<h3 id="core-components">Core Components</h3>
+<ul>
+<li><strong><a href="config/index.html">Configuration System</a></strong> - TOML-based layer configuration</li>
+<li><strong><a href="shared/index.html">Shared Components</a></strong> - Types, utilities, and hasher algorithms</li>
+</ul>
+<h3 id="storage-layers">Storage Layers</h3>
+<ul>
+<li><strong><a href="layers/local/index.html">Local Layer</a></strong> - Local filesystem storage</li>
+<li><strong><a href="layers/remote/index.html">Remote Layer</a></strong> - Network-based remote storage</li>
+<li><strong><a href="layers/anti_tampering/index.html">Anti-Tampering Layer</a></strong> - Data integrity with SHA-256/SHA-512</li>
+<li><strong><a href="layers/compression/index.html">Compression Layer</a></strong> - LZ4/ZSTD compression support</li>
+<li><strong><a href="layers/encryption/index.html">Encryption Layer</a></strong> - Data Encryption with AES-256-XTS</li>
+<li><strong><a href="layers/block_align/index.html">Block Align Layer</a></strong> - Block-aligned I/O operations</li>
+<li><strong><a href="layers/demultiplexer/index.html">Demultiplexer Layer</a></strong> - Parallel multi-backend operations</li>
+<li><strong><a href="layers/cache/read_cache/index.html">Read Cache Layer</a></strong> - Read caching using CacheLib</li>
+<li><strong><a href="layers/invisible_storage/index.html">Invisible Storage Layer</a></strong> - Invisible storage integration</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<ul>
+<li><strong><a href="examples/fuse/index.html">FUSE Example</a></strong> - FUSE filesystem implementation</li>
+<li><strong><a href="examples/invisible/index.html">Invisible Example</a></strong> - Invisible Storage SDK example demonstration</li>
+<li><strong><a href="examples/storserver/index.html">Storage Server Example</a></strong> - Network storage server</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<ul>
+<li><strong><a href="tests/index.html">Tests</a></strong> - Unit tests, integration tests, and testing infrastructure</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<p>ModularIOLib exports a POSIX-compatible API. The library parses a user-provided layer configuration and dynamically stacks the various layers on top of each other. Each layer implements the same POSIX-compatible API, is fully independent, and remains agnostic of the layers above or below it.</p>
+<p>The bottom layer must be a persistence layer that handles actual data storage (e.g., local, s3_opendal, etc.).</p>
+<p>Here is an example of a possible configuration:
+<pre class="mermaid"><code>flowchart TB
+    A["ModularIO Lib POSIX API"] --&gt; B["Encryption"]
+    B --&gt; C["Demultiplexer"]
+    C --&gt; D["Local"]
+    C --&gt; E["S3Opendal"]
+
+    style A stroke-width:4px,stroke-dasharray: 0</code></pre></p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="install">Install</h3>
+<p>Make sure you have the following packages installed:</p>
+<h4 id="ubuntudebian">Ubuntu/Debian</h4>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>make<span class="w"> </span>pkg-config<span class="w"> </span>libglib2.0-dev<span class="w"> </span>gcc<span class="w"> </span>libssl-dev<span class="w"> </span>g++<span class="w"> </span>libcurl4-openssl-dev
+</code></pre></div>
+<h3 id="installing-libfuse">Installing libfuse</h3>
+<p>In order to run the most complete example, you need to install libfuse.</p>
+<h4 id="ubuntudebian_1">Ubuntu/Debian</h4>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libfuse3-dev<span class="w"> </span>fuse3
+</code></pre></div>
+<p>For more detailed installation instructions, see the <a href="https://github.com/libfuse/libfuse">libfuse documentation</a>.</p>
+<p><strong>Note</strong>: This project is only tested on Linux systems and is not guaranteed to work on macOS or other operating systems.</p>
+<h3 id="install-rust">Install rust</h3>
+<p>In order to use invisible-storage, you need to install rust (v1.88.0) and cargo (v1.88.0):</p>
+<h4 id="ubuntudebian_2">Ubuntu/Debian</h4>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rustc<span class="w"> </span>cargo
+</code></pre></div>
+<h2 id="build-everything">Build Everything</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Initialize submodules and build all components</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+
+make<span class="w"> </span>build<span class="w"> </span><span class="nv">BUILD_INVISIBLE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">BUILD_CACHELIB</span><span class="o">=</span><span class="m">1</span>
+<span class="c1"># or to build without invisible storage (S3 and Solana support)</span>
+<span class="c1"># make build</span>
+</code></pre></div>
+<h3 id="configuration">Configuration</h3>
+<p>Copy and customize the example configuration:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>config.toml.example<span class="w"> </span>config.toml
+<span class="c1"># Edit config.toml to define your layer architecture (see Configuration Example below)</span>
+</code></pre></div>
+<h4 id="simple-configuration">Simple Configuration</h4>
+<p>The simplest configuration, which behaves as a passthrough, would look like this:
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local_layer&quot;</span>
+<span class="n">log_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span>
+
+<span class="k">[local_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local&quot;</span>
+</code></pre></div></p>
+<h4 id="encryption-configuration-example">Encryption Configuration Example</h4>
+<p>A simple configuration which performs encryption and stores locally (more about it <a href="layers/encryption/index.html">here</a>):
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;block_align&quot;</span>
+<span class="n">log_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span>
+
+<span class="k">[block_align]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;block_align&quot;</span>
+<span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">262144</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="n">256kb</span>
+<span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;encryption_layer&quot;</span>
+
+<span class="k">[encryption_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;encryption&quot;</span>
+<span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">262144</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="n">256kb</span>
+<span class="n">encryption_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1234567890123456789012345678901234567890234567890123456789012345&quot;</span>
+<span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local_layer&quot;</span>
+
+<span class="k">[local_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local&quot;</span>
+</code></pre></div></p>
+<h4 id="anti-tampering-configuration-example">Anti-Tampering Configuration Example</h4>
+<p>The following shows a complete example config file demonstrating a multi-layer architecture with anti-tampering, demultiplexer, and blockchain (solana)/s3 to store hashes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;anti_tampering_layer&quot;</span>
+<span class="n">log_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span><span class="w"> </span><span class="c1"># options (case insensitive): disabled, screen, error, warn, info, debug #</span>
+
+<span class="k">[anti_tampering_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;anti_tampering&quot;</span>
+<span class="n">hashes_storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/user/Modular-IO-Lib/examples/fuse/hashes&quot;</span><span class="w"> </span><span class="c1"># Note: Use your absolute path here #</span>
+<span class="n">hash_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;demultiplexer_layer&quot;</span>
+<span class="n">data_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local_layer&quot;</span>
+<span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sha256&quot;</span><span class="w"> </span><span class="c1"># options (case insensitive): sha256, sha512 - defaults to sha256 if not specified #</span>
+
+<span class="k">[demultiplexer_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;demultiplexer&quot;</span>
+<span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;s3_layer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;solana_layer&quot;</span><span class="p">]</span>
+
+<span class="k">[demultiplexer_layer.options]</span>
+<span class="n">enforced_layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;s3_layer&quot;</span><span class="p">]</span>
+<span class="n">passthrough_writes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;solana_layer&quot;</span><span class="p">]</span>
+
+<span class="k">[local_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local&quot;</span>
+
+<span class="k">[s3_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3_opendal&quot;</span>
+<span class="n">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_endpoint&quot;</span>
+<span class="n">access_key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_key_id&quot;</span>
+<span class="n">secret_access_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_secret_key&quot;</span>
+<span class="n">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_bucket&quot;</span>
+<span class="n">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_region&quot;</span>
+<span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_root&quot;</span>
+
+<span class="k">[solana_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;solana&quot;</span>
+<span class="n">keypair_path</span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_keypair_path&quot;</span>
+<span class="n">rpc_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_rpc_url&quot;</span>
+</code></pre></div>
+<p>This example configuration demonstrates:</p>
+<ul>
+<li><strong>Root Layer</strong>: <code>anti_tampering_layer</code> as the entry point</li>
+<li><strong>Security Layer</strong>: Anti-tampering with SHA-256 hashing and separate hash/data storage</li>
+<li><strong>Routing Layer</strong>: Demultiplexer managing multiple storage backends with different policies</li>
+<li><strong>Storage Backends</strong>: Local filesystem, S3-compatible storage, and Solana blockchain storage</li>
+<li><strong>Layer Relationships</strong>: How layers reference and chain to each other</li>
+</ul>
+<p><strong>Key Configuration Concepts:</strong></p>
+<ul>
+<li>Each layer has a unique name (e.g., <code>local_layer</code>, <code>solana_layer</code>) used for referencing</li>
+<li>The <code>root</code> parameter defines the entry point layer</li>
+<li>Layers can reference other layers to create processing chains</li>
+<li>The <code>demultiplexer</code> layer enables parallel operations across multiple backends</li>
+<li>Each layer type has specific configuration parameters (see individual layer documentation)</li>
+</ul>
+<p>For detailed configuration options for each layer type, see the <a href="#storage-layers">layer documentation</a>.</p>
+<h2 id="run-an-example">Run an Example</h2>
+<p>After learning how to create a config, it's time run one example.</p>
+<p><strong>The FUSE example is the one that supports the most features in this repo. It's the one you should build to better test our layers and features.</strong>
+For more info on how to run the other examples, please visit its dedicated info pages.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Build and run the FUSE example</span>
+make<span class="w"> </span>examples/fuse/build
+make<span class="w"> </span>examples/fuse/run
+</code></pre></div>
+<h2 id="available-commands">Available Commands</h2>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span><span class="nb">help</span><span class="w">                    </span><span class="c1"># Show all available targets</span>
+</code></pre></div>
+<h2 id="contribute-adding-a-new-layer">Contribute: Adding a New Layer</h2>
+<p>To add a new layer to the library:</p>
+<ol>
+<li><strong>Create layer files</strong>: <code>layers/your_layer/your_layer.c</code>, <code>your_layer.h</code>, <code>config.h</code></li>
+<li><strong>Add to enum</strong>: Add <code>LAYER_YOUR_LAYER</code> to <code>shared/enums/layer_type.h</code></li>
+<li><strong>Update config system</strong>: Add your layer to <code>config/declarations.h</code>, <code>parser.c</code>, and <code>builder.c</code></li>
+<li><strong>Implement functions</strong>: Create <code>your_layer_init()</code> and implement all POSIX operations</li>
+<li><strong>Add to Makefile</strong>: Include your layer in the build system</li>
+</ol>
+<p>See existing layers like <code>compression</code> or <code>local</code> for reference implementations.</p>
+<h2 id="documentation-system">Documentation System</h2>
+<p>This project uses <strong>MkDocs</strong> with <strong>Material theme</strong> for generating searchable documentation from README files.</p>
+<h2 id="docs">Docs</h2>
+<h3 id="documentation-commands">Documentation Commands</h3>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>docs/serve<span class="w">     </span><span class="c1"># Start development server with live reload</span>
+make<span class="w"> </span>docs/build<span class="w">     </span><span class="c1"># Generate static HTML documentation  </span>
+make<span class="w"> </span>docs/clean<span class="w">     </span><span class="c1"># Clean generated documentation files</span>
+make<span class="w"> </span>docs/links<span class="w">     </span><span class="c1"># Manually create/update symbolic links</span>
+</code></pre></div>
+<h3 id="how-it-works">How It Works</h3>
+<ul>
+<li><strong>Automatic Discovery</strong>: The system automatically finds all <code>.md</code> files in the repository</li>
+<li><strong>Dynamic Linking</strong>: Creates symbolic links in <code>docs/mkdocs/</code> pointing to actual markdown files</li>
+<li><strong>Preserves Structure</strong>: Original markdown files stay in their natural locations for GitHub navigation</li>
+<li><strong>Clean Separation</strong>: Generated files go to <code>docs/mkdocs_static/</code>, original docs resources remain untouched</li>
+<li><strong>Auto-Updates</strong>: GitHub Action automatically rebuilds documentation when any <code>.md</code> file changes</li>
+</ul>
+<h3 id="markdown-file-discovery"><strong>Markdown File Discovery</strong></h3>
+<p><strong>Any <code>.md</code> file</strong> in the repository will be automatically included in the documentation.</p>
+<p><strong>Included Files</strong>: All <code>.md</code> files except those in excluded directories (<code>build/</code>, <code>lib/</code>, etc.) or common non-documentation files (<code>CHANGELOG.md</code>, <code>CONTRIBUTING.md</code>, <code>LICENSE.md</code>).</p>
+<p><strong>Structure Preservation</strong>: The exact original file structure and names are preserved:</p>
+<ul>
+<li><code>layers/local/README.md</code> → <code>layers/local/README.md</code></li>
+<li><code>config/INSTALL.md</code> → <code>config/INSTALL.md</code></li>
+<li>Root <code>README.md</code> → <code>index.md</code> (MkDocs homepage convention)</li>
+</ul>
+<p><strong>Link Compatibility</strong>: Use full paths (e.g., <code>layers/local/README.md</code>) for links that work in both GitHub and MkDocs.</p>
+<h3 id="generated-structure">Generated Structure</h3>
+<div class="highlight"><pre><span></span><code>docs/
+├── mkdocs/           # Source links (auto-generated, don&#39;t edit)
+├── mkdocs_static/    # Static HTML output (for deployment)
+├── *.pdf *.png       # Original documentation resources (preserved)
+└── ...
+</code></pre></div>
+<h3 id="viewing-documentation">Viewing Documentation</h3>
+<ul>
+<li><strong>Development</strong>: Run <code>make docs/serve</code> and visit http://localhost:8000</li>
+<li><strong>Static</strong>: Open <code>docs/mkdocs_static/index.html</code> in your browser</li>
+<li><strong>GitHub</strong>: Navigate README files naturally in their directories</li>
+</ul>
+<h2 id="license">License</h2>
+<p>This project is licensed under the terms specified in the LICENSE file.</p>
+<hr />
+<p><strong>Need help?</strong> Check the documentation links above or run <code>make help</code> for available commands.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

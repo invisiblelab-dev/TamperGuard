@@ -1,0 +1,1690 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../remote/index.html">
+      
+      
+        <link rel="next" href="../compression/index.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Anti-Tampering Layer - Modular-IO-Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#anti-tampering-layer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-header__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Modular-IO-Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Anti-Tampering Layer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-nav__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Modular-IO-Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shared/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fuse/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUSE Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/invisible/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/storserver/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Layers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Storage Layers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anti-Tampering Layer
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anti-Tampering Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-safety-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Safety &amp; Locking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toml-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOML Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-blockchain-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-End Blockchain Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hash-file-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash File Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrity-violations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrity Violations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building and Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hash-algorithm-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Algorithm Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protected-attack-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Attack Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unprotected-attack-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unprotected Attack Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hasher-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hasher Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compression/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compression Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../block_align/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Align Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demultiplexer/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demultiplexer Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invisible_storage/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-safety-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Safety &amp; Locking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toml-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOML Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-blockchain-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-End Blockchain Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hash-file-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash File Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrity-violations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrity Violations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building and Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hash-algorithm-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Algorithm Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protected-attack-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Attack Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unprotected-attack-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unprotected Attack Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hasher-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hasher Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="anti-tampering-layer">Anti-Tampering Layer</h1>
+<p>The <strong>anti-tampering layer</strong> provides comprehensive data integrity verification using configurable hash algorithms with thread-safe file locking to prevent race conditions. It ensures data anti-tampering by automatically computing and verifying file hashes on file closes.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Configurable Hash Algorithms</strong>: Supports <em>SHA-256</em> and <em>SHA-512</em> with runtime selection</li>
+<li><strong>Automatic Hash Operations</strong>: Computes hashes on file close, verifies on file open</li>
+<li><strong>Atomic Operations</strong>: All operations are atomic with proper locking</li>
+<li><strong>Concurrent Reader Support</strong>: Multiple readers with exclusive writer access</li>
+<li><strong>Race Condition Prevention</strong>: Comprehensive locking strategy prevents data corruption</li>
+<li><strong>Layer Agnostic</strong>: Works with any underlying storage system</li>
+<li><strong>Modular Design</strong>: Uses the modular hasher system for extensible algorithm support</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<p>The anti-tampering layer uses a <strong>dual-storage approach</strong>:</p>
+<ul>
+<li><strong>Data Storage</strong>: File content stored in the underlying <em>data_layer</em></li>
+<li><strong>Hash Storage</strong>: Hash metadata stored in separate <em>hash_layer</em> </li>
+<li><strong>Hash File Naming</strong>: Hash files named using SHA-256 of file path + ".hash"</li>
+</ul>
+<div class="highlight"><pre><span></span><code>┌─────────────────┐
+│   Application   │
+└─────────────────┘
+         │
+┌─────────────────┐
+│ Anti-Tampering  │
+├─────────────────┤
+│   Hash Layer    │ ──── Stores hash files (.hash)
+│   Data Layer    │ ──── Stores actual file data
+└─────────────────┘
+</code></pre></div>
+<h2 id="thread-safety-locking">Thread Safety &amp; Locking</h2>
+<p>The anti-tampering layer implements <strong>path-based locking</strong> using pthread reader-writer locks:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Lock Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Open</strong></td>
+<td><em>READ lock</em></td>
+<td>Hash verification can run concurrently</td>
+</tr>
+<tr>
+<td><strong>Read</strong></td>
+<td><em>READ lock</em></td>
+<td>Multiple readers can access simultaneously</td>
+</tr>
+<tr>
+<td><strong>Write</strong></td>
+<td><em>WRITE lock</em></td>
+<td>Exclusive access during data modification</td>
+</tr>
+<tr>
+<td><strong>Close</strong></td>
+<td><em>WRITE lock</em></td>
+<td>Exclusive access during hash computation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Concurrent Operations</strong>: Multiple file opens and reads can run simultaneously.
+<strong>Exclusive Operations</strong>: Write and close operations block all other access.</p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="toml-configuration">TOML Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[anti_tamper_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;anti_tampering&quot;</span>
+<span class="n">hashes_storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/hash/directory&quot;</span>
+<span class="n">hash_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hash_layer_name&quot;</span><span class="w">     </span><span class="c1"># Layer for storing hash files</span>
+<span class="n">data_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;data_layer_name&quot;</span><span class="w">     </span><span class="c1"># Layer for storing actual data</span>
+<span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sha256&quot;</span><span class="w">               </span><span class="c1"># Hash algorithm: &quot;sha256&quot; or &quot;sha512&quot;</span>
+</code></pre></div>
+<h3 id="parameters">Parameters</h3>
+<ul>
+<li><strong><code>hashes_storage</code></strong> (string): Directory path prefix for hash files</li>
+<li><strong><code>hash_layer</code></strong> (string): Name of layer configuration for storing hash files</li>
+<li><strong><code>data_layer</code></strong> (string): Name of layer configuration for storing actual data</li>
+<li><strong><code>algorithm</code></strong> (string): Hash algorithm - <em>"sha256"</em> (default) or <em>"sha512"</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Speed</th>
+<th>Security</th>
+<th>Output Size</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SHA256</strong></td>
+<td>Fast</td>
+<td>Good</td>
+<td>64 hex chars</td>
+<td>General purpose, performance-focused</td>
+</tr>
+<tr>
+<td><strong>SHA512</strong></td>
+<td>Slower</td>
+<td>Better</td>
+<td>128 hex chars</td>
+<td>High-security requirements</td>
+</tr>
+</tbody>
+</table>
+<h2 id="end-to-end-blockchain-example">End-to-End Blockchain Example</h2>
+<p>The following example is one you can follow along to test the anti-tampering layer with a Solana blockchain as the hash storage layer for data integrity.</p>
+<p>First, you need to build the project with the BUILD_INVISIBLE=1 flag to include the Solana layer:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>build<span class="w"> </span><span class="nv">BUILD_INVISIBLE</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>Then, you need to configure the project to use the anti-tampering layer with the Solana blockchain as the hash storage layer.</p>
+<p><strong>Note</strong>: If you don't have a keypair file, you can follow the steps in the <a href="../invisible_storage/index.html">Solana Layer README</a> to create one.</p>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;anti_tampering&quot;</span>
+<span class="n">log_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+
+<span class="k">[anti_tampering]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;anti_tampering&quot;</span>
+<span class="n">hashes_storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/user/Modular-IO-Lib/examples/fuse/hashes&quot;</span><span class="w"> </span><span class="c1"># Note: Use your absolute path here #</span>
+<span class="n">hash_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;solana&quot;</span>
+<span class="n">data_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local_layer&quot;</span>
+<span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sha256&quot;</span>
+
+<span class="k">[solana_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;solana&quot;</span>
+<span class="n">keypair_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/user/.config/solana/id.json&quot;</span>
+<span class="n">rpc_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://api.devnet.solana.com&quot;</span>
+
+<span class="k">[local_layer]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local&quot;</span>
+</code></pre></div>
+<p>Then run the FUSE example in one terminal from the root of the project:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>examples/fuse/run
+</code></pre></div>
+<p>Write a file into the mounted directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/home/user/Modular-IO-Lib/examples/fuse/mount_point/test.txt
+</code></pre></div>
+<p>Check the transactions in a solana block explorer:</p>
+<p>You can go to <a href="https://solscan.io/?cluster=devnet">Solscan</a> and search for your address and you should see the transaction with the hash of the file your wrote.</p>
+<p>Further reads of the file will compare the hash of the file with the hash stored in the Solana blockchain.</p>
+<h2 id="operational-behavior">Operational Behavior</h2>
+<h3 id="file-operations">File Operations</h3>
+<p><strong>Open</strong>: Verifies file integrity by comparing stored hash with computed hash
+<strong>Read/Write</strong>: Standard file operations with appropriate locking
+<strong>Close</strong>: Computes and stores file hash for future verification</p>
+<p>All operations are atomic and thread-safe with proper locking.</p>
+<h2 id="hash-file-management">Hash File Management</h2>
+<p>Hash files are named using <strong>SHA-256 of the original file path</strong>:
+<div class="highlight"><pre><span></span><code>Original file: /path/to/myfile.txt
+Hash filename: &lt;hashes_storage&gt;/a1b2c3d4e5f6...789.hash
+</code></pre></div></p>
+<p>The hash layer can be any supported layer type (local, remote, cloud storage).</p>
+<h2 id="error-handling">Error Handling</h2>
+<h3 id="integrity-violations">Integrity Violations</h3>
+<ul>
+<li><strong>Hash Mismatch</strong>: File content doesn't match stored hash</li>
+<li><strong>Missing Hash</strong>: Hash file doesn't exist for existing data file</li>
+<li><strong>Corrupted Hash</strong>: Hash file is malformed or unreadable</li>
+</ul>
+<h3 id="system-errors">System Errors</h3>
+<ul>
+<li><strong>Lock Failures</strong>: Unable to acquire required locks</li>
+<li><strong>Storage Errors</strong>: Underlying layer errors (disk full, permissions, etc.)</li>
+<li><strong>Hash Computation</strong>: Hasher algorithm failures</li>
+</ul>
+<h3 id="return-codes">Return Codes</h3>
+<ul>
+<li><strong>0</strong>: Operation completed successfully</li>
+<li><strong>-1</strong>: File integrity violation detected</li>
+<li><strong>-2</strong>: Unable to acquire required lock</li>
+<li><strong>-3</strong>: Underlying storage layer error</li>
+</ul>
+<h2 id="performance">Performance</h2>
+<p><strong>Read Performance</strong>: Hash verification adds overhead on file open, but concurrent reads are supported
+<strong>Write Performance</strong>: Hash computation adds overhead on file close with exclusive access
+<strong>Memory Usage</strong>: O(n) for n open files, O(m) for m unique file paths</p>
+<p>In order to get some performance numbers, we have used the Anti-Tampering layer in the configuration while running the FUSE example on top of a PostgreSQL database. We have tested three different configurations, and also tested it agains a non-mounted directory:
+- Local Layer
+- Anti-Tampering with hashes stored on Local
+- Anti-Tampering with hashes stored on S3 </p>
+<p>We have used pgbench to benchmark our DB with three different workloads: Mixed read/write, read-only (SELECT), and write-only (INSERT). All results are reported in transactions per second (TPS).</p>
+<p>Test Configuration:
+- Platform: AWS EC2 m7i.xlarge (4 vCPUs, 16 GB RAM)
+- OS: AlmaLinux 9.6 (Sage Margay)
+- Database: PostgreSQL (v13.22) with pgbench benchmarking tool
+- Scale Factor: 50
+- Test Duration: 5 runs of 30 minutes each</p>
+<p>For S3 configurations, we used a VPC Gateway Endpoint to minimize access latency.</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Read/Write Mix</th>
+<th>Read-Only</th>
+<th>Write-Only</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No Fuse</strong></td>
+<td>3602.04 ± 14.90</td>
+<td>85943.15 ± 291.07</td>
+<td>5020.75 ± 3.62</td>
+</tr>
+<tr>
+<td><strong>Local</strong></td>
+<td>3215.36 ± 31.33</td>
+<td>34709.66 ± 256.66</td>
+<td>4141.10 ± 55.51</td>
+</tr>
+<tr>
+<td><strong>Anti-Tampering Local Hash</strong></td>
+<td>2159.81 ± 30.52</td>
+<td>35281.88 ± 237.89</td>
+<td>4444.91 ± 357.23</td>
+</tr>
+<tr>
+<td><strong>Anti-Tampering S3 Hash</strong></td>
+<td>1790.32 ± 15.17</td>
+<td>33607.99 ± 1506.85</td>
+<td>3827.04 ± 33.37</td>
+</tr>
+</tbody>
+</table>
+<h2 id="use-cases">Use Cases</h2>
+<ul>
+<li><strong>Critical data protection</strong>: Detect unauthorized modifications</li>
+<li><strong>Compliance requirements</strong>: Meet data integrity standards</li>
+<li><strong>Corruption detection</strong>: Identify storage-level corruption</li>
+<li><strong>Tamper detection</strong>: Identify malicious file modifications</li>
+<li><strong>Forensic integrity</strong>: Maintain evidence chain of custody</li>
+</ul>
+<h2 id="building-and-testing">Building and Testing</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Build all components</span>
+make<span class="w"> </span>build
+
+<span class="c1"># Run tests</span>
+make<span class="w"> </span>tests/run
+</code></pre></div>
+<p><strong>Test Coverage</strong>: Hash computation/verification, concurrent access, error handling, algorithm switching</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<h3 id="hash-algorithm-security">Hash Algorithm Security</h3>
+<ul>
+<li><strong>SHA256</strong>: Cryptographically secure, widely trusted</li>
+<li><strong>SHA512</strong>: More secure, recommended for sensitive data</li>
+<li><strong>Collision Resistance</strong>: Both algorithms resist hash collisions</li>
+</ul>
+<h3 id="protected-attack-scenarios">Protected Attack Scenarios</h3>
+<ul>
+<li><strong>File Tampering</strong>: Detects unauthorized file modifications</li>
+<li><strong>Data Corruption</strong>: Identifies storage-level corruption</li>
+<li><strong>Integrity Verification</strong>: Ensures data authenticity</li>
+</ul>
+<h3 id="unprotected-attack-scenarios">Unprotected Attack Scenarios</h3>
+<ul>
+<li><strong>Hash File Tampering</strong>: If attacker can modify both data and hash</li>
+<li><strong>Time-of-Check-Time-of-Use</strong>: Race conditions outside layer control</li>
+<li><strong>Cryptographic Attacks</strong>: Algorithm-specific vulnerabilities</li>
+</ul>
+<h3 id="security-best-practices">Security Best Practices</h3>
+<ul>
+<li>Store hash files on separate, secured storage</li>
+<li>Use <em>SHA512</em> for high-security environments</li>
+<li>Monitor hash verification failures</li>
+<li>Implement backup hash storage</li>
+<li>Secure hash storage layer independently</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong>Common Issues</strong>: Hash mismatches, lock timeouts, permission errors, performance issues</p>
+<p><strong>Debugging</strong>: Enable debug logging, check hash files, verify underlying layers, test simple operations</p>
+<p><strong>Performance Tuning</strong>: Choose appropriate algorithm (SHA256 vs SHA512), optimize storage layer</p>
+<h2 id="hasher-architecture">Hasher Architecture</h2>
+<p>The anti-tampering layer uses a <strong>modular hasher system</strong> with:
+- <strong>Generic EVP Implementation</strong>: Shared OpenSSL EVP operations for all algorithms
+- <strong>Algorithm-Specific Wrappers</strong>: Lightweight wrappers for SHA-256 and SHA-512</p>
+<p>This enables easy addition of new hash algorithms while maintaining consistent interfaces. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

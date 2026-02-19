@@ -1,0 +1,37 @@
+---
+# clang-tidy configuration for Modular IO Library
+# Pragmatic configuration focusing on bugs, security issues, and critical problems
+
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-core.*,
+  clang-analyzer-security.*,
+  clang-analyzer-unix.*,
+  bugprone-*,
+  cert-err*,
+  cert-msc*,
+  cert-pos*,
+  performance-*,
+  portability-restrict-system-includes,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-reserved-identifier,
+  -performance-no-int-to-ptr,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
+  -clang-analyzer-security.insecureAPI.strcpy
+
+CheckOptions:
+  # Be lenient with function sizes for existing code
+  - key: readability-function-size.LineThreshold
+    value: 300
+  - key: readability-function-size.StatementThreshold  
+    value: 200
+
+  # Don't enforce strict naming for existing codebase
+  - key: readability-identifier-naming.IgnoreFailedSplit
+    value: true
+
+# Header filter to only analyze project files, not external libraries
+HeaderFilterRegex: '^(?!.*/(lib|build)/)'
+
+# Exclude external dependencies and generated files
+SystemHeaders: false 

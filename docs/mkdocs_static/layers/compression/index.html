@@ -1,0 +1,1909 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../anti_tampering/index.html">
+      
+      
+        <link rel="next" href="../block_align/index.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Compression Layer - Modular-IO-Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compression-layer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-header__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Modular-IO-Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Compression Layer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-nav__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Modular-IO-Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shared/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fuse/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUSE Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/invisible/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/storserver/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Layers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Storage Layers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anti_tampering/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anti-Tampering Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compression Layer
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compression Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-mode-sparse_block-block-alignment-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Mode: sparse_block &amp; Block Alignment (IMPORTANT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mode-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-sparse_block-each-blocks-starts-in-the-respective-offset-in-the-file-leaving-spaces-between-blocks-if-the-block-is-compressable-in-case-of-no-compression-gains-the-block-is-stored-uncompressed-most-file-systems-support-sparse-files-but-make-sure-that-your-fs-supports-it-if-not-no-gains-will-come-from-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - sparse_block: Each blocks starts in the respective offset in the file, leaving spaces between blocks if the block is compressable. In case of no compression gains, the block is stored uncompressed. Most file systems support sparse files, but make sure that your fs supports it. If not, no gains will come from compression.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression-write-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression (Write Operations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompression-read-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompression (Read Operations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgbench-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pgbench performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithm Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lz4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LZ4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zstd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZSTD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompression-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompression Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building &amp; Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building &amp; Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimization-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modular-compressor-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Compressor Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../block_align/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Align Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demultiplexer/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demultiplexer Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invisible_storage/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-mode-sparse_block-block-alignment-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Mode: sparse_block &amp; Block Alignment (IMPORTANT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mode-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-sparse_block-each-blocks-starts-in-the-respective-offset-in-the-file-leaving-spaces-between-blocks-if-the-block-is-compressable-in-case-of-no-compression-gains-the-block-is-stored-uncompressed-most-file-systems-support-sparse-files-but-make-sure-that-your-fs-supports-it-if-not-no-gains-will-come-from-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - sparse_block: Each blocks starts in the respective offset in the file, leaving spaces between blocks if the block is compressable. In case of no compression gains, the block is stored uncompressed. Most file systems support sparse files, but make sure that your fs supports it. If not, no gains will come from compression.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression-write-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression (Write Operations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompression-read-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompression (Read Operations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgbench-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pgbench performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithm Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lz4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LZ4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zstd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZSTD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompression-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompression Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building &amp; Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building &amp; Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimization-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modular-compressor-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Compressor Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="compression-layer">Compression Layer</h1>
+<p>The <strong>compression layer</strong> provides transparent data compression and decompression for the Modular IO Library. It supports multiple compression algorithms with configurable compression levels, offering a balance between <em>compression ratio</em> and <em>performance</em>.</p>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><strong>Transparent</strong> compression and decompression on read/write operations</li>
+<li><strong>Multiple algorithms:</strong> Supports LZ4 and ZSTD</li>
+<li><strong>Configurable compression levels</strong></li>
+<li><strong>Thread-safe:</strong> Path-based locking</li>
+<li><strong>Original size tracking</strong></li>
+<li><strong>Layer-agnostic:</strong> Works with any underlying storage</li>
+<li><strong>Currently only block-based mode is implemented</strong></li>
+</ul>
+<hr />
+<h2 id="supported-mode-sparse_block-block-alignment-important">Supported Mode: sparse_block &amp; Block Alignment (IMPORTANT)</h2>
+<p>⚠️ <strong>Only the <code>sparse_block</code> mode is currently supported.</strong> This means data is compressed and decompressed <strong>per block of configurable size</strong>. It will only provide compression efficiencies with file systems that support sparse files.</p>
+<p>To work correctly, you MUST use the <code>block_align</code> layer directly above the compression layer, setting the <strong>same <code>block_size</code></strong> in both. This ensures:
+- Data passed to compression is always in full-size blocks
+- Every block is compressed (and decompressed) independently</p>
+<p><strong>Example TOML config:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">[block_align]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;block_align&quot;</span>
+<span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">262144</span>
+<span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;compression&quot;</span>
+
+<span class="k">[compression]</span>
+<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;compression&quot;</span>
+<span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lz4&quot;</span><span class="w">  </span><span class="c1"># or &quot;zstd&quot;</span>
+<span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">           </span><span class="c1"># compression level (int)</span>
+<span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sparse_block&quot;</span>
+<span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">262144</span>
+<span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;underlying_layer&quot;</span>
+
+<span class="k">[compression.options]</span>
+<span class="n">free_space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div></p>
+<hr />
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Algorithm support:</strong> LZ4 (fast) and ZSTD (high ratio), tunable compression levels</li>
+<li><strong>Automatic operation:</strong> Transparently compresses/decompresses blocks on all I/O</li>
+<li><strong>Size tracking:</strong> Maintains original file/block sizes for accurate decompression</li>
+<li><strong>Thread safety:</strong> Per-path locking and reader-writer locks</li>
+<li><strong>Memory efficiency:</strong> Dynamically manages buffers for optimal usage</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<p>Define a compression layer in your <code>config.toml</code> as above. </p>
+<ul>
+<li><code>algorithm</code> (<strong>required</strong>): Compression algorithm, <code>lz4</code> or <code>zstd</code></li>
+<li><strong><code>level</code></strong> (integer): Compression level</li>
+<li><strong>LZ4</strong>: Levels 0-12 (0=default, 12=best compression)(Negative values enable fast acceleration mode)</li>
+<li><strong>ZSTD</strong>: Levels 0-22 (3=default, 22=best compression)(Negative values enable ultra-fast compression that prioritizes speed over compression ratio)</li>
+<li><code>mode</code> (<strong>required</strong>): Always <code>sparse_block</code> (required)</li>
+<li><code>block_size</code> (<strong>required</strong>): Must match above block_align</li>
+<li><code>next</code> (<strong>required</strong>): Next layer</li>
+<li><code>options</code>: <ul>
+<li><code>free_space</code>: Use <code>fallocate</code> (if available in the persistense layer) to punch holes in the file if the update to the block has a smaller size than before. This leads to space optimization, but may hurt the performance.</li>
+</ul>
+</li>
+</ul>
+<h3 id="algorithm-characteristics">Algorithm Characteristics</h3>
+<ul>
+<li><code>lz4</code>: Extremely fast, moderate ratio, low memory - ideal for real-time/data streaming</li>
+<li><code>zstd</code>: Fast (but slower than LZ4), better compression, moderate memory - best for storage/bandwidth savings</li>
+</ul>
+<h3 id="mode-characteristics">Mode Characteristics</h3>
+<h2 id="-sparse_block-each-blocks-starts-in-the-respective-offset-in-the-file-leaving-spaces-between-blocks-if-the-block-is-compressable-in-case-of-no-compression-gains-the-block-is-stored-uncompressed-most-file-systems-support-sparse-files-but-make-sure-that-your-fs-supports-it-if-not-no-gains-will-come-from-compression">- <code>sparse_block</code>: Each blocks starts in the respective offset in the file, leaving spaces between blocks if the block is compressable. In case of no compression gains, the block is stored uncompressed. Most file systems support sparse files, but make sure that your fs supports it. If not, no gains will come from compression.</h2>
+<h2 id="architecture">Architecture</h2>
+<h3 id="compression-flow">Compression Flow</h3>
+<div class="highlight"><pre><span></span><code>Application Write → Compress Data (per block) → Store Compressed → Underlying Layer
+Application Read  ← Decompress Block-by-Block ← Read Compressed ← Underlying Layer
+</code></pre></div>
+<h3 id="core-components">Core Components</h3>
+<ul>
+<li><strong>Size Mapping:</strong> Tracks original file sizes for decompression</li>
+<li><strong>Compressor Interface:</strong> Pluggable algorithm support (easy future expansion)</li>
+<li><strong>Locking System:</strong> Per-path &amp; per-block thread safety</li>
+<li><strong>Buffer Management:</strong> Allocates buffers dynamically for compression/decompression</li>
+</ul>
+<hr />
+<h2 id="operational-behavior">Operational Behavior</h2>
+<h3 id="compression-write-operations">Compression (Write Operations)</h3>
+<ol>
+<li><strong>Acquire WRITE lock</strong> for file path</li>
+<li>Compress the write buffer (per block) using the selected algorithm</li>
+<li>Record the original size in the size hash table</li>
+<li>Write compressed block to next layer</li>
+<li>Release WRITE lock</li>
+</ol>
+<h3 id="decompression-read-operations">Decompression (Read Operations)</h3>
+<ol>
+<li><strong>Acquire READ lock</strong> for file path</li>
+<li>Read compressed block data from the next layer</li>
+<li>Retrieve the original block size</li>
+<li>Decompress to original size</li>
+<li>Release READ lock</li>
+</ol>
+<hr />
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Compression adds some CPU overhead; using LZ4 gives maximum speed, ZSTD higher compression</li>
+<li>Matching <code>block_size</code> between <code>block_align</code> and compression is required for correctness and optimal performance</li>
+<li>Space savings vs. speed trade-off determined by level &amp; algorithm</li>
+</ul>
+<h3 id="performance-guidelines">Performance Guidelines</h3>
+<ul>
+<li>Maximum speed: LZ4 with level 1</li>
+<li>Maximum compression: ZSTD with high level</li>
+<li>Balanced: ZSTD with level 6</li>
+</ul>
+<h3 id="storage-benefits">Storage Benefits</h3>
+<ul>
+<li>Reduces on-disk and over-the-wire data size (if storage/fs supports sparse files)</li>
+<li>Decreases I/O and network usage</li>
+</ul>
+<h3 id="pgbench-performance">pgbench performance</h3>
+<p>We have done three steps to test the performance of sparse block compression:
+- run <code>initdb</code> script, and measure the disk space used
+- run data init <code>pgbench -i -s 50</code>, and measure the disk space used
+- run three times a workload of read/write queries for 5 minutes each run, collect the average transaction per second (TPS), and measure the disk space used in the end of the runs</p>
+<ul>
+<li>Platform: AWS EC2 m7i.xlarge (4 vCPUs, 16 GB RAM)</li>
+<li>OS: AlmaLinux 9.6 (Sage Margay)</li>
+<li>Database: PostgreSQL (v13.22) with pgbench benchmarking tool</li>
+</ul>
+<p>With this, we've gathered this data, which provides the following comparison:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Average TPS</th>
+<th>% Difference vs No Fuse (TPS)</th>
+<th>Size (before; after init; after runs)</th>
+<th>% Difference vs No Fuse (Space)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No Fuse</td>
+<td>3810.62 tps</td>
+<td>-</td>
+<td>43M; 1.4G; 2.9G</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Fuse with local</td>
+<td>3379 tps</td>
+<td>-12%</td>
+<td>43M; 1.4G; 2.9G</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Fuse LZ4 256kb</td>
+<td>2094.69 tps</td>
+<td>-45%</td>
+<td>13M; 421M; 577M</td>
+<td>-70%; -70%; -81%</td>
+</tr>
+<tr>
+<td>Fuse LZ4 512kb</td>
+<td>1531.36 tps</td>
+<td>-60%</td>
+<td>11M; 272M; 436M</td>
+<td>-75%; -81%; -85%</td>
+</tr>
+<tr>
+<td>Fuse LZ4 256kb with fallocate</td>
+<td>1276.46 tps</td>
+<td>-66%</td>
+<td>13M; 421M; 541M</td>
+<td>-80%; -94%; -81.7%</td>
+</tr>
+<tr>
+<td>Fuse LZ4 512kb with fallocate</td>
+<td>1037.29 tps</td>
+<td>-72%</td>
+<td>11M; 272M; 393M</td>
+<td>-75%; -81%; -87%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="algorithm-comparison">Algorithm Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Speed</th>
+<th>Compression Ratio</th>
+<th>CPU Usage</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LZ4</strong></td>
+<td>Very Fast</td>
+<td>Moderate</td>
+<td>Low</td>
+<td>Performance-critical applications</td>
+</tr>
+<tr>
+<td><strong>ZSTD</strong></td>
+<td>Fast</td>
+<td>High</td>
+<td>Moderate</td>
+<td>Storage-optimized applications</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lz4">LZ4</h4>
+<ul>
+<li><strong>Speed:</strong> Extremely fast</li>
+<li><strong>Ratio:</strong> 2-3x typical for text data</li>
+<li><strong>Memory:</strong> Low requirements</li>
+<li><strong>Best for:</strong> Real-time apps, networks, fast access</li>
+</ul>
+<h4 id="zstd">ZSTD</h4>
+<ul>
+<li><strong>Speed:</strong> Fast (slower than LZ4)</li>
+<li><strong>Ratio:</strong> 3-5x for text data</li>
+<li><strong>Memory:</strong> Moderate requirements</li>
+<li><strong>Best for:</strong> Backups, archives, bandwidth-constrained/cloud use</li>
+</ul>
+<hr />
+<h2 id="thread-safety">Thread Safety</h2>
+<ul>
+<li><strong>Path-based and reader-writer locks</strong> prevent race conditions</li>
+<li><strong>Size mapping and buffer management</strong> are thread-safe</li>
+</ul>
+<hr />
+<h2 id="error-handling">Error Handling</h2>
+<h3 id="compression-errors">Compression Errors</h3>
+<ul>
+<li>Insufficient buffer? Automatic buffer resizing</li>
+<li>Algorithm init failure? Configuration validated at startup</li>
+<li>Compression failure? Falls back to storing uncompressed data</li>
+</ul>
+<h3 id="decompression-errors">Decompression Errors</h3>
+<ul>
+<li>Invalid compressed data? Detect and report</li>
+<li>Size mismatch? Validates against mapping</li>
+<li>Memory failures? Reports and recovers safely</li>
+<li>Decompression failure? Returns standard error</li>
+</ul>
+<h3 id="recovery">Recovery</h3>
+<ul>
+<li>Loss of size mapping attempts a best-effort size estimation</li>
+</ul>
+<hr />
+<h2 id="building-testing">Building &amp; Testing</h2>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>build<span class="w">        </span><span class="c1"># Build all, includes compression layer</span>
+make<span class="w"> </span>tests/run<span class="w">    </span><span class="c1"># Run compression tests</span>
+</code></pre></div>
+<h3 id="test-coverage">Test Coverage</h3>
+<ul>
+<li>Compression/decompression round-trips</li>
+<li>Each algorithm, compression level</li>
+<li>Error condition handling and reporting</li>
+<li>Thread safety validation under concurrency</li>
+<li>Performance and buffer efficiency</li>
+</ul>
+<hr />
+<h2 id="memory-management">Memory Management</h2>
+<ul>
+<li><strong>Buffers sized dynamically</strong> to fit block data</li>
+<li><strong>Reuse</strong>: Compression buffers reused where possible</li>
+<li><strong>Cleanup:</strong> Automatic cleanup on layer destruction</li>
+<li><strong>Size mapping:</strong> Efficient hash table for block/file mapping, auto cleanup</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li>High CPU usage? Lower level, use LZ4</li>
+<li>Memory? Monitor buffer/size-map use</li>
+<li>Size mismatches? Check mapping integrity</li>
+<li>Performance? Profile compression vs. I/O trade-off</li>
+<li>Debug logging: <code>log_mode = "debug"</code></li>
+</ul>
+<h3 id="optimization-tips">Optimization Tips</h3>
+<ul>
+<li>Match algorithm to use case</li>
+<li>Tune compression level for speed/space trade-off</li>
+<li>Monitor/tune buffer sizes for your workload</li>
+<li>Use block_align with matching size for reliability</li>
+</ul>
+<hr />
+<h2 id="modular-compressor-interface">Modular Compressor Interface</h2>
+<ul>
+<li><strong>Uniform interface</strong> for algorithm selection at runtime</li>
+<li><strong>Extensible by design:</strong> Add new compression algorithms easily</li>
+<li><strong>Current implementations:</strong> LZ4 (via LZ4 library), ZSTD (Zstandard lib)</li>
+<li><strong>Pluggable for new methods</strong> in future</li>
+</ul>
+<hr />
+<p>This extensible design enables future growth (modes and algorithms) while delivering efficient, safe, and configurable transparent compression for any storage backend. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

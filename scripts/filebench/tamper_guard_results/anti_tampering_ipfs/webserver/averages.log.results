@@ -1,0 +1,38 @@
+=== Averages across runs (from per-run logs) ===
+Source dir: /tmp/filebench_runs_20260210_092217/webserver
+
+Averages TSV: /tmp/filebench_runs_20260210_092217/webserver/averages.tsv
+
+io_summary	IO Summary	5	307997	256.634	10.42	15.59	82.6	8.2
+op	appendlog	5	9937.4	8.2	0.1	27.111	0.1086	206.045
+op	closefile10	5	9933.6	8.2	0	0.0108	0.001	1.0586
+op	closefile1	5	9937.2	8.2	0	0.0108	0.001	1.612
+op	closefile2	5	9936.8	8.2	0	0.011	0.001	1.4334
+op	closefile3	5	9936.4	8.2	0	0.0108	0.0012	1.2336
+op	closefile4	5	9936	8.2	0	0.011	0.0012	1.322
+op	closefile5	5	9935.4	8.2	0	0.0112	0.0012	1.5698
+op	closefile6	5	9935	8.2	0	0.011	0.0012	1.4014
+op	closefile7	5	9934.6	8.2	0	0.0108	0.0012	1.1882
+op	closefile8	5	9934.2	8.2	0	0.0108	0.0012	1.58
+op	closefile9	5	9933.8	8.2	0	0.0108	0.001	1.7176
+op	openfile10	5	9933.8	8.2	0	33.1996	0.903	191.342
+op	openfile1	5	9937.4	8.2	0	18.4614	0.6038	173.213
+op	openfile2	5	9936.8	8.2	0	30.5152	1.0496	201.939
+op	openfile3	5	9936.6	8.2	0	31.5652	0.922	221.711
+op	openfile4	5	9936	8.2	0	32.33	0.9098	189.838
+op	openfile5	5	9935.4	8.2	0	32.767	0.8662	191.444
+op	openfile6	5	9935.2	8.2	0	32.9672	0.9234	215.745
+op	openfile7	5	9934.8	8.2	0	33.1264	0.7876	216.729
+op	openfile8	5	9934.2	8.2	0	33.0684	0.9026	199.344
+op	openfile9	5	9933.8	8.2	0	33.1652	0.8848	206.025
+op	readfile10	5	9933.6	8.2	1.02	13.7934	0.1456	155.752
+op	readfile1	5	9937.2	8.2	1.02	16.555	0.1552	169.756
+op	readfile2	5	9936.8	8.2	1.02	15.6654	0.1438	181.014
+op	readfile3	5	9936.4	8.2	1.02	14.923	0.136	166.248
+op	readfile4	5	9936	8.2	1.02	14.4516	0.1616	183.475
+op	readfile5	5	9935.4	8.2	1.02	14.1504	0.1344	194.423
+op	readfile6	5	9935	8.2	1.02	13.9396	0.1462	170.898
+op	readfile7	5	9934.6	8.2	1.02	13.8658	0.1584	170.514
+op	readfile8	5	9934.2	8.2	1.02	13.8398	0.1504	188.078
+op	readfile9	5	9933.8	8.2	1.02	13.722	0.1416	176.509
+section	name	samples	avg_ops	avg_ops_per_s	avg_mb_per_s	avg_ms_per_op	avg_min_ms	avg_max_ms

@@ -1,0 +1,280 @@
+===== webserver_run_001.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Web-server Version 3.1 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: logfiles populated: 1 files, avg. dir. width = 1, avg. dir. depth = -nan, 0 leafdirs, 0.125MB total size
+0.003: Removing logfiles tree (if exists)
+0.007: Pre-allocating directories in logfiles tree
+0.007: Pre-allocating files in logfiles tree
+0.013: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.013: Removing bigfileset tree (if exists)
+0.928: Pre-allocating directories in bigfileset tree
+1.179: Pre-allocating files in bigfileset tree
+2.014: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+2.014: Population and pre-allocation of filesets completed
+2.014: Starting 1 filereader instances
+3.018: Running...
+1203.189: Run took 1200 seconds...
+1203.222: Per-Operation Breakdown
+appendlog            17356788ops    14462ops/s 113.0mb/s    0.011ms/op [0.001ms - 77.095ms]
+closefile10          17356784ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 8.017ms]
+readfile10           17356784ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 20.767ms]
+openfile10           17356784ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.687ms]
+closefile9           17356784ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 13.017ms]
+readfile9            17356785ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 22.490ms]
+openfile9            17356785ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.030ms]
+closefile8           17356785ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 6.289ms]
+readfile8            17356785ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 13.236ms]
+openfile8            17356786ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.020ms]
+closefile7           17356786ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.023ms]
+readfile7            17356786ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 13.039ms]
+openfile7            17356786ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 14.022ms]
+closefile6           17356786ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 10.015ms]
+readfile6            17356787ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 13.442ms]
+openfile6            17356788ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.142ms]
+closefile5           17356788ops    14462ops/s   0.0mb/s    0.001ms/op [0.000ms - 12.026ms]
+readfile5            17356788ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 12.177ms]
+openfile5            17356788ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 60.354ms]
+closefile4           17356788ops    14462ops/s   0.0mb/s    0.001ms/op [0.000ms - 12.018ms]
+readfile4            17356788ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 13.056ms]
+openfile4            17356788ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.644ms]
+closefile3           17356788ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 10.016ms]
+readfile3            17356788ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 13.040ms]
+openfile3            17356788ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.022ms]
+closefile2           17356788ops    14462ops/s   0.0mb/s    0.001ms/op [0.001ms - 15.207ms]
+readfile2            17356788ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 20.023ms]
+openfile2            17356788ops    14462ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.022ms]
+closefile1           17356788ops    14462ops/s   0.0mb/s    0.001ms/op [0.000ms - 10.970ms]
+readfile1            17356788ops    14462ops/s 1807.7mb/s    0.019ms/op [0.011ms - 17.209ms]
+openfile1            17356788ops    14462ops/s   0.0mb/s    0.005ms/op [0.003ms - 12.998ms]
+1203.222: IO Summary: 538060389 ops 448307.833 ops/s 144615/14462 rd/wr 18189.9mb/s 0.008ms/op
+1203.222: Shutting down processes
+
+===== webserver_run_002.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.006: Web-server Version 3.1 personality successfully loaded
+0.006: Populating and pre-allocating filesets
+0.006: logfiles populated: 1 files, avg. dir. width = 1, avg. dir. depth = -nan, 0 leafdirs, 0.125MB total size
+0.006: Removing logfiles tree (if exists)
+4.479: Pre-allocating directories in logfiles tree
+4.479: Pre-allocating files in logfiles tree
+4.485: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+4.485: Removing bigfileset tree (if exists)
+5.226: Pre-allocating directories in bigfileset tree
+5.510: Pre-allocating files in bigfileset tree
+6.397: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+6.397: Population and pre-allocation of filesets completed
+6.397: Starting 1 filereader instances
+7.401: Running...
+1207.609: Run took 1200 seconds...
+1207.610: Per-Operation Breakdown
+appendlog            14421403ops    12016ops/s  93.8mb/s    0.011ms/op [0.001ms - 207.818ms]
+closefile10          14421399ops    12016ops/s   0.0mb/s    0.001ms/op [0.001ms - 17.319ms]
+readfile10           14421400ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 37.525ms]
+openfile10           14421400ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.031ms]
+closefile9           14421400ops    12016ops/s   0.0mb/s    0.001ms/op [0.000ms - 9.680ms]
+readfile9            14421400ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 35.603ms]
+openfile9            14421401ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 15.154ms]
+closefile8           14421401ops    12016ops/s   0.0mb/s    0.001ms/op [0.001ms - 13.179ms]
+readfile8            14421401ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 41.140ms]
+openfile8            14421401ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 38.234ms]
+closefile7           14421401ops    12016ops/s   0.0mb/s    0.001ms/op [0.001ms - 11.521ms]
+readfile7            14421402ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 26.272ms]
+openfile7            14421402ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.029ms]
+closefile6           14421402ops    12016ops/s   0.0mb/s    0.001ms/op [0.000ms - 12.367ms]
+readfile6            14421402ops    12016ops/s 1502.0mb/s    0.025ms/op [0.015ms - 54.206ms]
+openfile6            14421402ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 38.380ms]
+closefile5           14421402ops    12016ops/s   0.0mb/s    0.001ms/op [0.001ms - 10.076ms]
+readfile5            14421402ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 52.571ms]
+openfile5            14421402ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 20.327ms]
+closefile4           14421402ops    12016ops/s   0.0mb/s    0.001ms/op [0.001ms - 7.103ms]
+readfile4            14421402ops    12016ops/s 1502.0mb/s    0.025ms/op [0.015ms - 35.604ms]
+openfile4            14421402ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.250ms]
+closefile3           14421402ops    12016ops/s   0.0mb/s    0.001ms/op [0.001ms - 9.981ms]
+readfile3            14421402ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 52.539ms]
+openfile3            14421402ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 55.823ms]
+closefile2           14421402ops    12016ops/s   0.0mb/s    0.001ms/op [0.000ms - 13.889ms]
+readfile2            14421403ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 65.731ms]
+openfile2            14421403ops    12016ops/s   0.0mb/s    0.005ms/op [0.002ms - 13.762ms]
+closefile1           14421403ops    12016ops/s   0.0mb/s    0.001ms/op [0.000ms - 42.570ms]
+readfile1            14421403ops    12016ops/s 1502.0mb/s    0.025ms/op [0.014ms - 38.925ms]
+openfile1            14421403ops    12016ops/s   0.0mb/s    0.005ms/op [0.003ms - 25.532ms]
+1207.610: IO Summary: 447063452 ops 372488.279 ops/s 120158/12016 rd/wr 15113.5mb/s 0.010ms/op
+1207.610: Shutting down processes
+
+===== webserver_run_003.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.003: Web-server Version 3.1 personality successfully loaded
+0.003: Populating and pre-allocating filesets
+0.003: logfiles populated: 1 files, avg. dir. width = 1, avg. dir. depth = -nan, 0 leafdirs, 0.125MB total size
+0.003: Removing logfiles tree (if exists)
+4.040: Pre-allocating directories in logfiles tree
+4.040: Pre-allocating files in logfiles tree
+4.046: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+4.046: Removing bigfileset tree (if exists)
+4.796: Pre-allocating directories in bigfileset tree
+5.082: Pre-allocating files in bigfileset tree
+6.099: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+6.099: Population and pre-allocation of filesets completed
+6.099: Starting 1 filereader instances
+7.101: Running...
+1207.391: Run took 1200 seconds...
+1207.392: Per-Operation Breakdown
+appendlog            14308167ops    11921ops/s  93.1mb/s    0.010ms/op [0.001ms - 51.779ms]
+closefile10          14308163ops    11921ops/s   0.0mb/s    0.001ms/op [0.000ms - 44.370ms]
+readfile10           14308164ops    11921ops/s 1490.1mb/s    0.026ms/op [0.014ms - 48.038ms]
+openfile10           14308164ops    11921ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.960ms]
+closefile9           14308164ops    11921ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.019ms]
+readfile9            14308164ops    11921ops/s 1490.1mb/s    0.026ms/op [0.014ms - 22.345ms]
+openfile9            14308164ops    11921ops/s   0.0mb/s    0.005ms/op [0.002ms - 14.516ms]
+closefile8           14308164ops    11921ops/s   0.0mb/s    0.001ms/op [0.000ms - 14.352ms]
+readfile8            14308164ops    11921ops/s 1490.1mb/s    0.026ms/op [0.014ms - 68.504ms]
+openfile8            14308164ops    11921ops/s   0.0mb/s    0.005ms/op [0.002ms - 15.404ms]
+closefile7           14308164ops    11921ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.020ms]
+readfile7            14308164ops    11921ops/s 1490.1mb/s    0.026ms/op [0.014ms - 28.438ms]
+openfile7            14308164ops    11921ops/s   0.0mb/s    0.005ms/op [0.003ms - 111.721ms]
+closefile6           14308164ops    11921ops/s   0.0mb/s    0.001ms/op [0.000ms - 13.938ms]
+readfile6            14308165ops    11921ops/s 1490.1mb/s    0.026ms/op [0.014ms - 73.119ms]
+openfile6            14308165ops    11921ops/s   0.0mb/s    0.005ms/op [0.002ms - 18.739ms]
+closefile5           14308165ops    11921ops/s   0.0mb/s    0.001ms/op [0.000ms - 14.659ms]
+readfile5            14308165ops    11921ops/s 1490.1mb/s    0.025ms/op [0.014ms - 45.593ms]
+openfile5            14308165ops    11921ops/s   0.0mb/s    0.005ms/op [0.002ms - 66.833ms]
+closefile4           14308165ops    11921ops/s   0.0mb/s    0.001ms/op [0.001ms - 13.058ms]
+readfile4            14308166ops    11921ops/s 1490.1mb/s    0.025ms/op [0.014ms - 34.165ms]
+openfile4            14308166ops    11921ops/s   0.0mb/s    0.005ms/op [0.003ms - 13.161ms]
+closefile3           14308166ops    11921ops/s   0.0mb/s    0.001ms/op [0.001ms - 16.388ms]
+readfile3            14308166ops    11921ops/s 1490.1mb/s    0.025ms/op [0.014ms - 49.892ms]
+openfile3            14308166ops    11921ops/s   0.0mb/s    0.005ms/op [0.003ms - 13.119ms]
+closefile2           14308166ops    11921ops/s   0.0mb/s    0.001ms/op [0.000ms - 12.020ms]
+readfile2            14308166ops    11921ops/s 1490.1mb/s    0.025ms/op [0.014ms - 23.045ms]
+openfile2            14308167ops    11921ops/s   0.0mb/s    0.005ms/op [0.002ms - 17.834ms]
+closefile1           14308167ops    11921ops/s   0.0mb/s    0.001ms/op [0.001ms - 11.174ms]
+readfile1            14308167ops    11921ops/s 1490.1mb/s    0.025ms/op [0.014ms - 71.265ms]
+openfile1            14308167ops    11921ops/s   0.0mb/s    0.005ms/op [0.003ms - 25.132ms]
+1207.392: IO Summary: 443553118 ops 369538.257 ops/s 119206/11921 rd/wr 14993.8mb/s 0.010ms/op
+1207.392: Shutting down processes
+
+===== webserver_run_004.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.003: Web-server Version 3.1 personality successfully loaded
+0.003: Populating and pre-allocating filesets
+0.003: logfiles populated: 1 files, avg. dir. width = 1, avg. dir. depth = -nan, 0 leafdirs, 0.125MB total size
+0.003: Removing logfiles tree (if exists)
+3.974: Pre-allocating directories in logfiles tree
+3.974: Pre-allocating files in logfiles tree
+3.989: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+3.989: Removing bigfileset tree (if exists)
+4.608: Pre-allocating directories in bigfileset tree
+4.887: Pre-allocating files in bigfileset tree
+5.803: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+5.803: Population and pre-allocation of filesets completed
+5.803: Starting 1 filereader instances
+6.807: Running...
+1206.974: Run took 1200 seconds...
+1206.975: Per-Operation Breakdown
+appendlog            14387775ops    11988ops/s  93.6mb/s    0.010ms/op [0.001ms - 72.150ms]
+closefile10          14387771ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 20.060ms]
+readfile10           14387771ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 38.367ms]
+openfile10           14387771ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 45.227ms]
+closefile9           14387771ops    11988ops/s   0.0mb/s    0.001ms/op [0.000ms - 8.316ms]
+readfile9            14387771ops    11988ops/s 1498.5mb/s    0.025ms/op [0.015ms - 50.000ms]
+openfile9            14387771ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 13.177ms]
+closefile8           14387771ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.018ms]
+readfile8            14387771ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 55.494ms]
+openfile8            14387771ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 15.177ms]
+closefile7           14387771ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.017ms]
+readfile7            14387771ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 34.266ms]
+openfile7            14387771ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 26.032ms]
+closefile6           14387771ops    11988ops/s   0.0mb/s    0.001ms/op [0.000ms - 12.018ms]
+readfile6            14387771ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 24.511ms]
+openfile6            14387771ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 12.046ms]
+closefile5           14387771ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 10.232ms]
+readfile5            14387772ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 58.657ms]
+openfile5            14387772ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 13.475ms]
+closefile4           14387772ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 14.432ms]
+readfile4            14387772ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 27.059ms]
+openfile4            14387772ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 22.693ms]
+closefile3           14387772ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.306ms]
+readfile3            14387772ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 30.875ms]
+openfile3            14387773ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 13.025ms]
+closefile2           14387773ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 15.682ms]
+readfile2            14387773ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 37.169ms]
+openfile2            14387773ops    11988ops/s   0.0mb/s    0.005ms/op [0.002ms - 18.465ms]
+closefile1           14387773ops    11988ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.017ms]
+readfile1            14387773ops    11988ops/s 1498.5mb/s    0.025ms/op [0.014ms - 26.426ms]
+openfile1            14387774ops    11988ops/s   0.0mb/s    0.005ms/op [0.003ms - 14.247ms]
+1206.975: IO Summary: 446020927 ops 371632.324 ops/s 119881/11988 rd/wr 15078.8mb/s 0.010ms/op
+1206.975: Shutting down processes
+
+===== webserver_run_005.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.003: Web-server Version 3.1 personality successfully loaded
+0.003: Populating and pre-allocating filesets
+0.003: logfiles populated: 1 files, avg. dir. width = 1, avg. dir. depth = -nan, 0 leafdirs, 0.125MB total size
+0.003: Removing logfiles tree (if exists)
+4.314: Pre-allocating directories in logfiles tree
+4.315: Pre-allocating files in logfiles tree
+4.321: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+4.321: Removing bigfileset tree (if exists)
+5.012: Pre-allocating directories in bigfileset tree
+5.316: Pre-allocating files in bigfileset tree
+6.234: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+6.234: Population and pre-allocation of filesets completed
+6.234: Starting 1 filereader instances
+7.236: Running...
+1207.394: Run took 1200 seconds...
+1207.395: Per-Operation Breakdown
+appendlog            14487792ops    12072ops/s  94.3mb/s    0.010ms/op [0.001ms - 84.355ms]
+closefile10          14487788ops    12072ops/s   0.0mb/s    0.001ms/op [0.000ms - 13.064ms]
+readfile10           14487788ops    12072ops/s 1508.9mb/s    0.025ms/op [0.014ms - 56.525ms]
+openfile10           14487788ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 18.297ms]
+closefile9           14487788ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 7.200ms]
+readfile9            14487788ops    12072ops/s 1508.9mb/s    0.025ms/op [0.014ms - 47.077ms]
+openfile9            14487788ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 26.830ms]
+closefile8           14487788ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 11.018ms]
+readfile8            14487788ops    12072ops/s 1508.9mb/s    0.025ms/op [0.015ms - 28.356ms]
+openfile8            14487788ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 21.865ms]
+closefile7           14487788ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 16.974ms]
+readfile7            14487788ops    12072ops/s 1508.9mb/s    0.025ms/op [0.014ms - 18.056ms]
+openfile7            14487788ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 22.113ms]
+closefile6           14487788ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.017ms]
+readfile6            14487789ops    12072ops/s 1508.9mb/s    0.025ms/op [0.014ms - 49.372ms]
+openfile6            14487789ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 32.176ms]
+closefile5           14487789ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 12.017ms]
+readfile5            14487790ops    12072ops/s 1508.9mb/s    0.025ms/op [0.014ms - 22.116ms]
+openfile5            14487790ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 29.024ms]
+closefile4           14487790ops    12072ops/s   0.0mb/s    0.001ms/op [0.000ms - 10.942ms]
+readfile4            14487790ops    12072ops/s 1508.9mb/s    0.025ms/op [0.014ms - 31.175ms]
+openfile4            14487791ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 16.032ms]
+closefile3           14487791ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 21.374ms]
+readfile3            14487791ops    12072ops/s 1508.9mb/s    0.025ms/op [0.015ms - 48.725ms]
+openfile3            14487791ops    12072ops/s   0.0mb/s    0.005ms/op [0.002ms - 22.545ms]
+closefile2           14487791ops    12072ops/s   0.0mb/s    0.001ms/op [0.000ms - 23.369ms]
+readfile2            14487791ops    12072ops/s 1508.9mb/s    0.025ms/op [0.015ms - 46.373ms]
+openfile2            14487791ops    12072ops/s   0.0mb/s    0.004ms/op [0.002ms - 19.815ms]
+closefile1           14487791ops    12072ops/s   0.0mb/s    0.001ms/op [0.001ms - 13.559ms]
+readfile1            14487791ops    12072ops/s 1508.9mb/s    0.025ms/op [0.015ms - 41.630ms]
+openfile1            14487792ops    12072ops/s   0.0mb/s    0.005ms/op [0.003ms - 28.869ms]
+1207.395: IO Summary: 449121474 ops 374218.599 ops/s 120716/12072 rd/wr 15183.8mb/s 0.010ms/op
+1207.395: Shutting down processes
+

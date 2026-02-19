@@ -1,0 +1,18 @@
+=== Averages across runs (from per-run logs) ===
+Source dir: /tmp/filebench_runs_20260209_102344/fileserver
+
+Averages TSV: /tmp/filebench_runs_20260209_102344/fileserver/averages.tsv
+
+io_summary	IO Summary	5	2.81303e+07	23439.6	565.96	0.1698	2130.8	4261.8
+op	appendfilerand1	5	2557301	2130.8	16.64	0.13	0.029	85.2506
+op	closefile1	5	2557302	2130.8	0	0.011	0.0012	2.2262
+op	closefile2	5	2557301	2130.8	0	0.01	0.001	4.7334
+op	closefile3	5	2.5573e+06	2130.8	0	0.011	0.001	3.0106
+op	createfile1	5	2.5573e+06	2130.8	0	0.3256	0.0964	85.8596
+op	deletefile1	5	2557300	2130.8	0	0.298	0.092	88.9158
+op	openfile1	5	2.5573e+06	2130.8	0	0.179	0.0482	32.7882
+op	openfile2	5	2.5573e+06	2130.8	0	0.1798	0.0472	31.1768
+op	readfile1	5	2.5573e+06	2130.8	282.94	0.2636	0.0926	72.81
+op	statfile1	5	2.5573e+06	2130.8	0	0.1528	0.0418	8.1032
+op	wrtfile1	5	2.5573e+06	2130.8	266.36	0.3032	0.1238	68.4274
+section	name	samples	avg_ops	avg_ops_per_s	avg_mb_per_s	avg_ms_per_op	avg_min_ms	avg_max_ms

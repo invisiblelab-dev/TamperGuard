@@ -1,0 +1,170 @@
+===== fileserver_run_001.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Populating and pre-allocating filesets
+0.008: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.008: Removing bigfileset tree (if exists)
+0.010: Pre-allocating directories in bigfileset tree
+3.437: Pre-allocating files in bigfileset tree
+10.617: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.617: Population and pre-allocation of filesets completed
+sh: line 1: /proc/sys/vm/drop_caches: Permission denied
+Running fileserver.f for 1200 seconds...
+10.661: Attempting to create fileset more than once, ignoring
+10.661: Starting 1 filereader instances
+11.665: Running...
+1211.768: Run took 1200 seconds...
+1211.768: Per-Operation Breakdown
+statfile1            2110362ops     1758ops/s   0.0mb/s    0.138ms/op [0.044ms - 22.558ms]
+deletefile1          2110362ops     1758ops/s   0.0mb/s    0.350ms/op [0.122ms - 66.947ms]
+closefile3           2110362ops     1758ops/s   0.0mb/s    0.009ms/op [0.001ms - 2.491ms]
+readfile1            2110362ops     1758ops/s 233.5mb/s    0.211ms/op [0.086ms - 22.448ms]
+openfile2            2110362ops     1758ops/s   0.0mb/s    0.428ms/op [0.186ms - 65.430ms]
+closefile2           2110362ops     1758ops/s   0.0mb/s    0.008ms/op [0.001ms - 0.931ms]
+appendfilerand1      2110362ops     1758ops/s  13.7mb/s    0.112ms/op [0.030ms - 64.735ms]
+openfile1            2110362ops     1758ops/s   0.0mb/s    0.431ms/op [0.178ms - 65.958ms]
+closefile1           2110362ops     1758ops/s   0.0mb/s    0.010ms/op [0.001ms - 2.221ms]
+wrtfile1             2110362ops     1758ops/s 219.8mb/s    0.268ms/op [0.130ms - 53.556ms]
+createfile1          2110364ops     1758ops/s   0.0mb/s    0.298ms/op [0.107ms - 65.991ms]
+1211.768: IO Summary: 23213984 ops 19343.330 ops/s 1758/3517 rd/wr 467.0mb/s 0.206ms/op
+1211.768: Shutting down processes
+
+===== fileserver_run_002.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Populating and pre-allocating filesets
+0.013: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.013: Removing bigfileset tree (if exists)
+0.019: Pre-allocating directories in bigfileset tree
+3.917: Pre-allocating files in bigfileset tree
+10.847: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.847: Population and pre-allocation of filesets completed
+sh: line 1: /proc/sys/vm/drop_caches: Permission denied
+Running fileserver.f for 1200 seconds...
+10.922: Attempting to create fileset more than once, ignoring
+10.922: Starting 1 filereader instances
+11.926: Running...
+1212.032: Run took 1200 seconds...
+1212.032: Per-Operation Breakdown
+statfile1            2103148ops     1752ops/s   0.0mb/s    0.139ms/op [0.046ms - 4.096ms]
+deletefile1          2103148ops     1752ops/s   0.0mb/s    0.351ms/op [0.128ms - 68.404ms]
+closefile3           2103149ops     1752ops/s   0.0mb/s    0.009ms/op [0.001ms - 1.757ms]
+readfile1            2103149ops     1752ops/s 232.7mb/s    0.212ms/op [0.090ms - 3.051ms]
+openfile2            2103150ops     1752ops/s   0.0mb/s    0.429ms/op [0.177ms - 64.873ms]
+closefile2           2103152ops     1752ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.372ms]
+appendfilerand1      2103152ops     1752ops/s  13.7mb/s    0.113ms/op [0.031ms - 65.732ms]
+openfile1            2103152ops     1752ops/s   0.0mb/s    0.432ms/op [0.182ms - 63.607ms]
+closefile1           2103152ops     1752ops/s   0.0mb/s    0.010ms/op [0.001ms - 0.920ms]
+wrtfile1             2103152ops     1752ops/s 219.1mb/s    0.269ms/op [0.130ms - 50.272ms]
+createfile1          2103152ops     1752ops/s   0.0mb/s    0.299ms/op [0.106ms - 68.934ms]
+1212.032: IO Summary: 23134656 ops 19277.181 ops/s 1752/3505 rd/wr 465.4mb/s 0.206ms/op
+1212.032: Shutting down processes
+
+===== fileserver_run_003.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Populating and pre-allocating filesets
+0.014: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.014: Removing bigfileset tree (if exists)
+0.020: Pre-allocating directories in bigfileset tree
+3.918: Pre-allocating files in bigfileset tree
+10.921: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.921: Population and pre-allocation of filesets completed
+sh: line 1: /proc/sys/vm/drop_caches: Permission denied
+Running fileserver.f for 1200 seconds...
+11.003: Attempting to create fileset more than once, ignoring
+11.003: Starting 1 filereader instances
+12.007: Running...
+1212.107: Run took 1200 seconds...
+1212.107: Per-Operation Breakdown
+statfile1            2098646ops     1749ops/s   0.0mb/s    0.139ms/op [0.045ms - 3.462ms]
+deletefile1          2098646ops     1749ops/s   0.0mb/s    0.351ms/op [0.125ms - 68.863ms]
+closefile3           2098647ops     1749ops/s   0.0mb/s    0.009ms/op [0.001ms - 0.991ms]
+readfile1            2098647ops     1749ops/s 232.2mb/s    0.212ms/op [0.089ms - 6.168ms]
+openfile2            2098648ops     1749ops/s   0.0mb/s    0.430ms/op [0.175ms - 69.066ms]
+closefile2           2098648ops     1749ops/s   0.0mb/s    0.009ms/op [0.001ms - 1.282ms]
+appendfilerand1      2098648ops     1749ops/s  13.7mb/s    0.114ms/op [0.029ms - 68.608ms]
+openfile1            2098648ops     1749ops/s   0.0mb/s    0.432ms/op [0.180ms - 53.982ms]
+closefile1           2098649ops     1749ops/s   0.0mb/s    0.010ms/op [0.001ms - 3.116ms]
+wrtfile1             2098649ops     1749ops/s 218.6mb/s    0.269ms/op [0.129ms - 48.708ms]
+createfile1          2098649ops     1749ops/s   0.0mb/s    0.300ms/op [0.110ms - 68.419ms]
+1212.107: IO Summary: 23085125 ops 19236.002 ops/s 1749/3497 rd/wr 464.4mb/s 0.207ms/op
+1212.107: Shutting down processes
+
+===== fileserver_run_004.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Populating and pre-allocating filesets
+0.013: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.014: Removing bigfileset tree (if exists)
+0.019: Pre-allocating directories in bigfileset tree
+3.588: Pre-allocating files in bigfileset tree
+10.564: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.564: Population and pre-allocation of filesets completed
+sh: line 1: /proc/sys/vm/drop_caches: Permission denied
+Running fileserver.f for 1200 seconds...
+10.613: Attempting to create fileset more than once, ignoring
+10.613: Starting 1 filereader instances
+11.617: Running...
+1211.721: Run took 1200 seconds...
+1211.721: Per-Operation Breakdown
+statfile1            2097787ops     1748ops/s   0.0mb/s    0.139ms/op [0.043ms - 17.425ms]
+deletefile1          2097787ops     1748ops/s   0.0mb/s    0.352ms/op [0.121ms - 90.320ms]
+closefile3           2097789ops     1748ops/s   0.0mb/s    0.009ms/op [0.001ms - 0.869ms]
+readfile1            2097789ops     1748ops/s 232.1mb/s    0.213ms/op [0.089ms - 17.151ms]
+openfile2            2097789ops     1748ops/s   0.0mb/s    0.430ms/op [0.182ms - 84.265ms]
+closefile2           2097790ops     1748ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.275ms]
+appendfilerand1      2097790ops     1748ops/s  13.7mb/s    0.113ms/op [0.001ms - 57.093ms]
+openfile1            2097790ops     1748ops/s   0.0mb/s    0.433ms/op [0.178ms - 77.221ms]
+closefile1           2097790ops     1748ops/s   0.0mb/s    0.010ms/op [0.001ms - 1.972ms]
+wrtfile1             2097790ops     1748ops/s 218.5mb/s    0.270ms/op [0.130ms - 51.027ms]
+createfile1          2097791ops     1748ops/s   0.0mb/s    0.300ms/op [0.108ms - 90.316ms]
+1211.721: IO Summary: 23075682 ops 19228.073 ops/s 1748/3496 rd/wr 464.2mb/s 0.207ms/op
+1211.721: Shutting down processes
+
+===== fileserver_run_005.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Populating and pre-allocating filesets
+0.014: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.014: Removing bigfileset tree (if exists)
+0.019: Pre-allocating directories in bigfileset tree
+3.964: Pre-allocating files in bigfileset tree
+10.408: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.408: Population and pre-allocation of filesets completed
+sh: line 1: /proc/sys/vm/drop_caches: Permission denied
+Running fileserver.f for 1200 seconds...
+10.457: Attempting to create fileset more than once, ignoring
+10.457: Starting 1 filereader instances
+11.462: Running...
+1211.571: Run took 1200 seconds...
+1211.571: Per-Operation Breakdown
+statfile1            2071980ops     1726ops/s   0.0mb/s    0.141ms/op [0.044ms - 27.830ms]
+deletefile1          2071980ops     1726ops/s   0.0mb/s    0.364ms/op [0.122ms - 74.197ms]
+closefile3           2071982ops     1726ops/s   0.0mb/s    0.009ms/op [0.001ms - 2.970ms]
+readfile1            2071982ops     1726ops/s 229.2mb/s    0.214ms/op [0.087ms - 24.145ms]
+openfile2            2071983ops     1726ops/s   0.0mb/s    0.435ms/op [0.185ms - 66.183ms]
+closefile2           2071983ops     1726ops/s   0.0mb/s    0.009ms/op [0.001ms - 2.354ms]
+appendfilerand1      2071983ops     1726ops/s  13.5mb/s    0.115ms/op [0.031ms - 68.062ms]
+openfile1            2071983ops     1726ops/s   0.0mb/s    0.436ms/op [0.175ms - 74.344ms]
+closefile1           2071984ops     1726ops/s   0.0mb/s    0.010ms/op [0.001ms - 2.453ms]
+wrtfile1             2071984ops     1726ops/s 215.8mb/s    0.270ms/op [0.129ms - 60.334ms]
+createfile1          2071984ops     1726ops/s   0.0mb/s    0.303ms/op [0.106ms - 72.253ms]
+1211.571: IO Summary: 22791808 ops 18991.443 ops/s 1726/3453 rd/wr 458.5mb/s 0.210ms/op
+1211.571: Shutting down processes
+

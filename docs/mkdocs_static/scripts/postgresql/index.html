@@ -1,0 +1,1433 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>PostgreSQL pgbench Workload Script - Modular-IO-Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#postgresql-pgbench-workload-script" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-header__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Modular-IO-Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PostgreSQL pgbench Workload Script
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Modular-IO-Library" class="md-nav__button md-logo" aria-label="Modular-IO-Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Modular-IO-Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shared/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fuse/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUSE Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/invisible/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/storserver/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Layers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Storage Layers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/local/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/remote/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/anti_tampering/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anti-Tampering Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/compression/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compression Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/block_align/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Align Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/demultiplexer/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demultiplexer Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layers/invisible_storage/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invisible Storage Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-initialize-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Initialize the Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-start-the-postgresql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Start the PostgreSQL Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verify-server-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verify Server is Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stop-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stop server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-database-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Database and Duration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-write-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read-Write Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-test-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Test Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-postgresql-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom PostgreSQL Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-custom-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Custom Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-performance-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Performance Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-reported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics Reported
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pgbench-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pgbench Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-only-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read-Only Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="postgresql-pgbench-workload-script">PostgreSQL pgbench Workload Script</h1>
+<p>A comprehensive bash script for running PostgreSQL pgbench performance tests with automatic database setup, disk usage monitoring, and detailed metrics reporting.</p>
+<h2 id="overview">Overview</h2>
+<p>This script automates the process of:
+- Creating a PostgreSQL database
+- Initializing pgbench with a scale factor of 50
+- Running multiple pgbench test iterations
+- Monitoring disk usage at different stages
+- Calculating and reporting average latency and TPS metrics</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>PostgreSQL server running and accessible</li>
+<li><code>pgbench</code> utility installed</li>
+<li><code>psql</code> and <code>createdb</code> utilities available</li>
+<li><code>bc</code> calculator for metric calculations</li>
+<li>Appropriate database user permissions</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>Before running the pgbench workload script, you must initialize the PostgreSQL data directory and start the server.</p>
+<blockquote>
+<p><strong>Note</strong>: PostgreSQL binaries are typically located in:
+- <code>/usr/bin/</code> (default on most Linux distributions)
+- <code>/usr/lib/postgresql/16/bin/</code> (Ubuntu/Debian specific version)
+- <code>/lib/postgresql/16/bin/</code> (alternative location)</p>
+<p>Adjust the paths below according to your PostgreSQL installation.</p>
+</blockquote>
+<h3 id="1-initialize-the-database">1. Initialize the Database</h3>
+<p>Initialize a new PostgreSQL database cluster:</p>
+<div class="highlight"><pre><span></span><code>initdb<span class="w"> </span>-D<span class="w"> </span>examples/fuse/mount_point/
+
+<span class="c1"># Example with full path:</span>
+<span class="c1"># /usr/lib/postgresql/16/bin/initdb -D examples/fuse/mount_point/</span>
+</code></pre></div>
+<p>This creates a new PostgreSQL data directory at <code>examples/fuse/mount_point/</code>.</p>
+<h3 id="2-start-the-postgresql-server">2. Start the PostgreSQL Server</h3>
+<p>If this step isn't working, remember to change the <code>unix_socket_directories</code> path to use <code>/tmp</code>, and create the folder with:
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/tmp/postgresql<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>chmod<span class="w"> </span><span class="m">1777</span><span class="w"> </span>/tmp/postgresql
+</code></pre></div></p>
+<p>Start the PostgreSQL server using the initialized data directory:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example: Start server in the background</span>
+postgres<span class="w"> </span>-D<span class="w"> </span>examples/fuse/mount_point/<span class="w"> </span><span class="p">&amp;</span>
+
+<span class="c1"># Or use pg_ctl for better control</span>
+pg_ctl<span class="w"> </span>-D<span class="w"> </span>examples/fuse/mount_point/<span class="w"> </span>start
+
+<span class="c1"># Example with full path:</span>
+<span class="c1"># /usr/lib/postgresql/16/bin/pg_ctl -D examples/fuse/mount_point/ start</span>
+</code></pre></div>
+<p><strong>Note</strong>: Adjust the data directory location according to your desired configuration.</p>
+<h3 id="3-verify-server-is-running">3. Verify Server is Running</h3>
+<p>Check that the server is accepting connections:</p>
+<div class="highlight"><pre><span></span><code>pg_isready<span class="w"> </span>-h<span class="w"> </span><span class="m">127</span>.0.0.1
+</code></pre></div>
+<p>Once the server is running and accessible, you can proceed to run the pgbench workload script.</p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span>--data-dir<span class="w"> </span>DIR<span class="w"> </span>--postgres-bin<span class="w"> </span>DIR<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</code></pre></div>
+<h2 id="stop-server">Stop server</h2>
+<div class="highlight"><pre><span></span><code>pg_ctl<span class="w"> </span>-D<span class="w"> </span>examples/fuse/mount_point/<span class="w"> </span>-l<span class="w"> </span>logfile<span class="w"> </span>stop
+
+<span class="c1"># Example with full path:</span>
+<span class="c1"># /usr/lib/postgresql/16/bin/pg_ctl -D examples/fuse/mount_point/ -l logfile stop</span>
+</code></pre></div>
+<h2 id="required-parameters">Required Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--data-dir DIR</code></td>
+<td><strong>REQUIRED</strong> PostgreSQL data directory to monitor</td>
+</tr>
+<tr>
+<td><code>--postgres-bin DIR</code></td>
+<td><strong>REQUIRED</strong> Directory containing PostgreSQL binaries</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--db-name NAME</code></td>
+<td>Database name to create/use</td>
+<td><code>mydb</code></td>
+</tr>
+<tr>
+<td><code>--db-user USER</code></td>
+<td>PostgreSQL user for connections</td>
+<td><code>postgres</code></td>
+</tr>
+<tr>
+<td><code>--host HOST</code></td>
+<td>Database host address</td>
+<td><code>127.0.0.1</code></td>
+</tr>
+<tr>
+<td><code>--pgbench-bin PATH</code></td>
+<td>Full path to pgbench binary</td>
+<td><code>/usr/bin/pgbench</code></td>
+</tr>
+<tr>
+<td><code>--repeats N</code></td>
+<td>Number of test runs to execute</td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>--duration SECONDS</code></td>
+<td>Duration of each test run in seconds</td>
+<td><code>300</code></td>
+</tr>
+<tr>
+<td><code>--read-only [0\|1\|true\|false]</code></td>
+<td>Enable read-only mode (adds <code>-S</code> flag)</td>
+<td><code>1</code> (enabled)</td>
+</tr>
+<tr>
+<td><code>-h, --help</code></td>
+<td>Display help message</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<blockquote>
+<p><strong>Note</strong>: All examples require <code>--data-dir</code> and <code>--postgres-bin</code> parameters. These are mandatory and have no default values.</p>
+</blockquote>
+<h3 id="basic-usage">Basic Usage</h3>
+<p>Run with all default settings (required parameters must be provided):
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/home/admin/Modular-IO-Lib/examples/fuse/mount_point<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin
+</code></pre></div></p>
+<p>This will:
+- Create database <code>mydb</code> (or use existing)
+- Run 3 test iterations
+- Each test runs for 300 seconds (5 minutes)
+- Use read-only mode (<code>-S</code> flag)</p>
+<h3 id="custom-database-and-duration">Custom Database and Duration</h3>
+<p>Run with a custom database name and longer test duration:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/home/admin/Modular-IO-Lib/examples/fuse/mount_point<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--db-name<span class="w"> </span>testdb<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--duration<span class="w"> </span><span class="m">600</span>
+</code></pre></div></p>
+<h3 id="read-write-mode">Read-Write Mode</h3>
+<p>Run in read-write mode (disables <code>-S</code> flag) with shorter duration:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/home/admin/Modular-IO-Lib/examples/fuse/mount_point<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--read-only<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--duration<span class="w"> </span><span class="m">120</span>
+</code></pre></div></p>
+<h3 id="multiple-test-runs">Multiple Test Runs</h3>
+<p>Run 10 test iterations to get better statistical averages:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/home/admin/Modular-IO-Lib/examples/fuse/mount_point<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--repeats<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--duration<span class="w"> </span><span class="m">300</span>
+</code></pre></div></p>
+<h3 id="remote-database">Remote Database</h3>
+<p>Connect to a remote PostgreSQL server:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--host<span class="w"> </span><span class="m">192</span>.168.1.100<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--db-user<span class="w"> </span>myuser<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--db-name<span class="w"> </span>production_test
+</code></pre></div></p>
+<h3 id="custom-postgresql-installation">Custom PostgreSQL Installation</h3>
+<p>Use a custom PostgreSQL installation path:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/var/lib/postgresql/16/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/lib/postgresql/16/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pgbench-bin<span class="w"> </span>/usr/lib/postgresql/16/bin/pgbench
+</code></pre></div></p>
+<h3 id="full-custom-configuration">Full Custom Configuration</h3>
+<p>Complete example with all options customized:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--db-name<span class="w"> </span>benchmark_db<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--db-user<span class="w"> </span>jnuno<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--host<span class="w"> </span>localhost<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pgbench-bin<span class="w"> </span>/usr/bin/pgbench<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--repeats<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--duration<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--read-only<span class="w"> </span><span class="m">1</span>
+</code></pre></div></p>
+<h3 id="quick-performance-test">Quick Performance Test</h3>
+<p>Run a quick 1-minute test in read-write mode:
+<div class="highlight"><pre><span></span><code>./pgbench_workload.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-dir<span class="w"> </span>/home/admin/Modular-IO-Lib/examples/fuse/mount_point<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--postgres-bin<span class="w"> </span>/usr/bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--duration<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--read-only<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--repeats<span class="w"> </span><span class="m">1</span>
+</code></pre></div></p>
+<h2 id="script-workflow">Script Workflow</h2>
+<ol>
+<li><strong>Disk Usage Check (Before)</strong>: Records disk usage of the data directory before database creation</li>
+<li><strong>Database Creation</strong>: Creates the specified database (or uses existing)</li>
+<li><strong>pgbench Initialization</strong>: Initializes pgbench with scale factor 50 (<code>-i -s 50</code>)</li>
+<li><strong>Disk Usage Check (After Init)</strong>: Records disk usage after initialization</li>
+<li><strong>Test Execution</strong>: Runs pgbench tests the specified number of times</li>
+<li>Each test runs for the specified duration</li>
+<li>10 clients (<code>-c 10</code>) and 2 threads (<code>-j 2</code>) are used</li>
+<li>Read-only mode (<code>-S</code>) is enabled by default</li>
+<li><strong>Disk Usage Check (After Tests)</strong>: Records final disk usage</li>
+<li><strong>Results Summary</strong>: Displays average latency and TPS across all runs, along with standard deviations to measure consistency</li>
+</ol>
+<h2 id="output-files">Output Files</h2>
+<p>The script generates temporary result files:</p>
+<ul>
+<li><code>/tmp/tps_results.txt</code>: Detailed pgbench output for each test run</li>
+<li><code>/tmp/disk_usage_results.txt</code>: Disk usage measurements at different stages</li>
+</ul>
+<h2 id="metrics-reported">Metrics Reported</h2>
+<ul>
+<li><strong>Latency Average</strong>: Average transaction latency in milliseconds (across all runs)</li>
+<li><strong>Latency Standard Deviation</strong>: Variability of transaction latency across runs</li>
+<li><strong>TPS Average</strong>: Average transactions per second (across all runs)</li>
+<li><strong>TPS Standard Deviation</strong>: Variability of TPS across runs</li>
+<li><strong>Disk Usage</strong>: Before database creation, after initialization, and after all tests</li>
+</ul>
+<h2 id="pgbench-parameters">pgbench Parameters</h2>
+<p>The script uses the following pgbench parameters:
+- <code>-c 10</code>: 10 concurrent clients
+- <code>-j 2</code>: 2 worker threads
+- <code>-S</code>: Read-only mode (when <code>--read-only</code> is enabled)
+- <code>-T DURATION</code>: Test duration in seconds
+- <code>-i -s 50</code>: Initialization with scale factor 50</p>
+<h2 id="read-only-mode">Read-Only Mode</h2>
+<p>The <code>--read-only</code> flag controls whether pgbench runs in read-only mode:
+- <code>1</code>, <code>true</code>, <code>yes</code>, or any non-zero value: Enables read-only mode (adds <code>-S</code> flag)
+- <code>0</code>, <code>false</code>, or <code>no</code>: Disables read-only mode (read-write workload)</p>
+<h2 id="error-handling">Error Handling</h2>
+<ul>
+<li>The script uses <code>set -e</code> to exit on any error</li>
+<li><strong>Required parameters validation</strong>: Script exits with an error if <code>--data-dir</code> or <code>--postgres-bin</code> are not provided</li>
+<li>Database creation failures are handled gracefully (assumes database already exists)</li>
+<li>Missing directories are reported but don't stop execution</li>
+<li>Invalid command-line options display an error and show usage</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="connection-issues">Connection Issues</h3>
+<p>If you encounter connection errors:
+<div class="highlight"><pre><span></span><code><span class="c1"># Check if PostgreSQL is running</span>
+pg_isready<span class="w"> </span>-h<span class="w"> </span><span class="m">127</span>.0.0.1
+
+<span class="c1"># Verify user permissions</span>
+psql<span class="w"> </span>-h<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-U<span class="w"> </span>your_user<span class="w"> </span>-d<span class="w"> </span>postgres<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;\du&quot;</span>
+</code></pre></div></p>
+<h3 id="permission-errors">Permission Errors</h3>
+<p>Ensure your database user has:
+- <code>CREATE DATABASE</code> privilege
+- Access to the target database
+- Appropriate permissions for pgbench operations</p>
+<h3 id="missing-dependencies">Missing Dependencies</h3>
+<p>Install required tools:
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>postgresql-client<span class="w"> </span>postgresql-contrib<span class="w"> </span>bc
+
+<span class="c1"># CentOS/RHEL</span>
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>postgresql<span class="w"> </span>postgresql-contrib<span class="w"> </span>bc
+</code></pre></div></p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The script waits 10 seconds between test runs</li>
+<li>Scale factor 50 creates a moderately sized test database</li>
+<li>Results are written to <code>/tmp/</code> and may be overwritten by subsequent runs</li>
+<li>The script will attempt to create the database; if it already exists, it will continue</li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/pgbench.html">PostgreSQL pgbench Documentation</a></li>
+<li>PostgreSQL performance tuning guides</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

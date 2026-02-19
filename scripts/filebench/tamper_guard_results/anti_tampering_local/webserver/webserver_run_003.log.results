@@ -1,0 +1,54 @@
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.003: Web-server Version 3.1 personality successfully loaded
+0.003: Populating and pre-allocating filesets
+0.003: logfiles populated: 1 files, avg. dir. width = 1, avg. dir. depth = -nan, 0 leafdirs, 0.125MB total size
+0.003: Removing logfiles tree (if exists)
+0.008: Pre-allocating directories in logfiles tree
+0.009: Pre-allocating files in logfiles tree
+0.021: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.021: Removing bigfileset tree (if exists)
+0.026: Pre-allocating directories in bigfileset tree
+3.822: Pre-allocating files in bigfileset tree
+11.903: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+11.903: Population and pre-allocation of filesets completed
+11.903: Starting 1 filereader instances
+12.907: Running...
+1213.011: Run took 1200 seconds...
+1213.012: Per-Operation Breakdown
+appendlog            755715ops      630ops/s   4.9mb/s    0.160ms/op [0.029ms - 66.515ms]
+closefile10          755711ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 2.624ms]
+readfile10           755711ops      630ops/s  78.7mb/s    0.192ms/op [0.081ms - 20.812ms]
+openfile10           755711ops      630ops/s   0.0mb/s    0.419ms/op [0.176ms - 43.894ms]
+closefile9           755711ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.382ms]
+readfile9            755711ops      630ops/s  78.7mb/s    0.192ms/op [0.083ms - 21.202ms]
+openfile9            755711ops      630ops/s   0.0mb/s    0.419ms/op [0.179ms - 94.555ms]
+closefile8           755711ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 0.986ms]
+readfile8            755711ops      630ops/s  78.7mb/s    0.192ms/op [0.086ms - 7.928ms]
+openfile8            755711ops      630ops/s   0.0mb/s    0.419ms/op [0.176ms - 94.518ms]
+closefile7           755712ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.093ms]
+readfile7            755712ops      630ops/s  78.7mb/s    0.192ms/op [0.085ms - 9.214ms]
+openfile7            755713ops      630ops/s   0.0mb/s    0.419ms/op [0.180ms - 14.439ms]
+closefile6           755713ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 0.947ms]
+readfile6            755713ops      630ops/s  78.7mb/s    0.192ms/op [0.082ms - 7.832ms]
+openfile6            755713ops      630ops/s   0.0mb/s    0.419ms/op [0.187ms - 8.885ms]
+closefile5           755713ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.370ms]
+readfile5            755713ops      630ops/s  78.7mb/s    0.192ms/op [0.083ms - 7.110ms]
+openfile5            755713ops      630ops/s   0.0mb/s    0.419ms/op [0.177ms - 15.850ms]
+closefile4           755713ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.703ms]
+readfile4            755713ops      630ops/s  78.7mb/s    0.192ms/op [0.084ms - 14.173ms]
+openfile4            755713ops      630ops/s   0.0mb/s    0.419ms/op [0.179ms - 93.796ms]
+closefile3           755713ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.086ms]
+readfile3            755713ops      630ops/s  78.7mb/s    0.192ms/op [0.084ms - 13.184ms]
+openfile3            755713ops      630ops/s   0.0mb/s    0.419ms/op [0.179ms - 51.728ms]
+closefile2           755713ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.315ms]
+readfile2            755714ops      630ops/s  78.7mb/s    0.192ms/op [0.085ms - 8.070ms]
+openfile2            755714ops      630ops/s   0.0mb/s    0.418ms/op [0.177ms - 94.132ms]
+closefile1           755714ops      630ops/s   0.0mb/s    0.008ms/op [0.001ms - 1.580ms]
+readfile1            755714ops      630ops/s  78.7mb/s    0.191ms/op [0.083ms - 5.931ms]
+openfile1            755715ops      630ops/s   0.0mb/s    0.395ms/op [0.178ms - 43.228ms]
+1213.012: IO Summary: 23427091 ops 19520.882 ops/s 6297/630 rd/wr 792.1mb/s 0.204ms/op
+1213.012: Shutting down processes

@@ -1,0 +1,170 @@
+===== varmail_run_001.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.008: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.008: Removing bigfileset tree (if exists)
+0.012: Pre-allocating directories in bigfileset tree
+3.112: Pre-allocating files in bigfileset tree
+9.573: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+9.573: Population and pre-allocation of filesets completed
+9.574: Starting 1 filereader instances
+10.577: Running...
+1210.685: Run took 1200 seconds...
+1210.685: Per-Operation Breakdown
+closefile4           889327ops      741ops/s   0.0mb/s    0.013ms/op [0.001ms - 0.577ms]
+readfile4            889327ops      741ops/s  12.3mb/s    0.136ms/op [0.016ms - 3.830ms]
+openfile4            889328ops      741ops/s   0.0mb/s    0.446ms/op [0.082ms - 69.483ms]
+closefile3           889328ops      741ops/s   0.0mb/s    0.018ms/op [0.002ms - 0.660ms]
+fsyncfile3           889328ops      741ops/s   0.0mb/s    1.172ms/op [0.059ms - 52.682ms]
+appendfilerand3      889328ops      741ops/s   5.8mb/s    0.267ms/op [0.031ms - 20.484ms]
+readfile3            889329ops      741ops/s  12.4mb/s    0.134ms/op [0.015ms - 4.060ms]
+openfile3            889329ops      741ops/s   0.0mb/s    0.448ms/op [0.084ms - 69.320ms]
+closefile2           889331ops      741ops/s   0.0mb/s    0.017ms/op [0.002ms - 1.180ms]
+fsyncfile2           889331ops      741ops/s   0.0mb/s    1.296ms/op [0.435ms - 68.627ms]
+appendfilerand2      889331ops      741ops/s   5.8mb/s    0.134ms/op [0.034ms - 27.825ms]
+createfile2          889331ops      741ops/s   0.0mb/s    0.678ms/op [0.128ms - 65.484ms]
+deletefile1          889331ops      741ops/s   0.0mb/s    0.618ms/op [0.108ms - 64.939ms]
+1210.685: IO Summary: 11561279 ops 9633.532 ops/s 1482/1482 rd/wr  36.3mb/s 0.414ms/op
+1210.685: Shutting down processes
+
+===== varmail_run_002.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.013: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.014: Removing bigfileset tree (if exists)
+0.019: Pre-allocating directories in bigfileset tree
+3.775: Pre-allocating files in bigfileset tree
+10.756: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.756: Population and pre-allocation of filesets completed
+10.757: Starting 1 filereader instances
+11.761: Running...
+1211.868: Run took 1200 seconds...
+1211.868: Per-Operation Breakdown
+closefile4           931674ops      776ops/s   0.0mb/s    0.013ms/op [0.001ms - 0.569ms]
+readfile4            931674ops      776ops/s  12.9mb/s    0.129ms/op [0.014ms - 9.155ms]
+openfile4            931674ops      776ops/s   0.0mb/s    0.423ms/op [0.081ms - 123.209ms]
+closefile3           931675ops      776ops/s   0.0mb/s    0.017ms/op [0.002ms - 5.337ms]
+fsyncfile3           931675ops      776ops/s   0.0mb/s    1.132ms/op [0.067ms - 150.789ms]
+appendfilerand3      931675ops      776ops/s   6.1mb/s    0.251ms/op [0.027ms - 25.638ms]
+readfile3            931675ops      776ops/s  12.9mb/s    0.126ms/op [0.016ms - 4.264ms]
+openfile3            931675ops      776ops/s   0.0mb/s    0.425ms/op [0.085ms - 54.507ms]
+closefile2           931675ops      776ops/s   0.0mb/s    0.016ms/op [0.002ms - 1.205ms]
+fsyncfile2           931675ops      776ops/s   0.0mb/s    1.251ms/op [0.425ms - 150.150ms]
+appendfilerand2      931676ops      776ops/s   6.1mb/s    0.126ms/op [0.034ms - 133.735ms]
+createfile2          931676ops      776ops/s   0.0mb/s    0.644ms/op [0.127ms - 86.841ms]
+deletefile1          931677ops      776ops/s   0.0mb/s    0.581ms/op [0.108ms - 44.777ms]
+1211.868: IO Summary: 12111776 ops 10092.248 ops/s 1553/1553 rd/wr  38.0mb/s 0.395ms/op
+1211.868: Shutting down processes
+
+===== varmail_run_003.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.013: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.014: Removing bigfileset tree (if exists)
+0.019: Pre-allocating directories in bigfileset tree
+3.987: Pre-allocating files in bigfileset tree
+11.018: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+11.018: Population and pre-allocation of filesets completed
+11.018: Starting 1 filereader instances
+12.022: Running...
+1212.131: Run took 1200 seconds...
+1212.131: Per-Operation Breakdown
+closefile4           826151ops      688ops/s   0.0mb/s    0.014ms/op [0.001ms - 0.785ms]
+readfile4            826151ops      688ops/s  11.5mb/s    0.148ms/op [0.017ms - 3.908ms]
+openfile4            826151ops      688ops/s   0.0mb/s    0.477ms/op [0.085ms - 76.176ms]
+closefile3           826151ops      688ops/s   0.0mb/s    0.019ms/op [0.001ms - 0.964ms]
+fsyncfile3           826151ops      688ops/s   0.0mb/s    1.271ms/op [0.077ms - 77.682ms]
+appendfilerand3      826153ops      688ops/s   5.4mb/s    0.284ms/op [0.032ms - 105.296ms]
+readfile3            826153ops      688ops/s  11.6mb/s    0.145ms/op [0.017ms - 4.067ms]
+openfile3            826153ops      688ops/s   0.0mb/s    0.479ms/op [0.083ms - 45.275ms]
+closefile2           826153ops      688ops/s   0.0mb/s    0.018ms/op [0.002ms - 1.217ms]
+fsyncfile2           826153ops      688ops/s   0.0mb/s    1.402ms/op [0.402ms - 107.164ms]
+appendfilerand2      826155ops      688ops/s   5.4mb/s    0.148ms/op [0.035ms - 58.708ms]
+createfile2          826155ops      688ops/s   0.0mb/s    0.727ms/op [0.129ms - 106.016ms]
+deletefile1          826155ops      688ops/s   0.0mb/s    0.660ms/op [0.109ms - 47.391ms]
+1212.131: IO Summary: 10739985 ops 8949.178 ops/s 1377/1377 rd/wr  33.9mb/s 0.445ms/op
+1212.131: Shutting down processes
+
+===== varmail_run_004.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.014: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.014: Removing bigfileset tree (if exists)
+0.020: Pre-allocating directories in bigfileset tree
+3.975: Pre-allocating files in bigfileset tree
+10.909: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.909: Population and pre-allocation of filesets completed
+10.909: Starting 1 filereader instances
+11.913: Running...
+1212.020: Run took 1200 seconds...
+1212.021: Per-Operation Breakdown
+closefile4           918653ops      765ops/s   0.0mb/s    0.013ms/op [0.001ms - 0.866ms]
+readfile4            918653ops      765ops/s  12.7mb/s    0.131ms/op [0.017ms - 1.770ms]
+openfile4            918653ops      765ops/s   0.0mb/s    0.427ms/op [0.083ms - 162.738ms]
+closefile3           918654ops      765ops/s   0.0mb/s    0.017ms/op [0.001ms - 0.927ms]
+fsyncfile3           918654ops      765ops/s   0.0mb/s    1.155ms/op [0.081ms - 54.642ms]
+appendfilerand3      918656ops      765ops/s   6.0mb/s    0.251ms/op [0.031ms - 84.393ms]
+readfile3            918656ops      765ops/s  12.8mb/s    0.129ms/op [0.017ms - 3.682ms]
+openfile3            918656ops      765ops/s   0.0mb/s    0.431ms/op [0.083ms - 164.324ms]
+closefile2           918657ops      765ops/s   0.0mb/s    0.016ms/op [0.002ms - 0.702ms]
+fsyncfile2           918657ops      765ops/s   0.0mb/s    1.272ms/op [0.438ms - 56.005ms]
+appendfilerand2      918657ops      765ops/s   6.0mb/s    0.129ms/op [0.001ms - 13.251ms]
+createfile2          918657ops      765ops/s   0.0mb/s    0.651ms/op [0.130ms - 45.079ms]
+deletefile1          918657ops      765ops/s   0.0mb/s    0.586ms/op [0.110ms - 29.967ms]
+1212.021: IO Summary: 11942520 ops 9951.207 ops/s 1531/1531 rd/wr  37.5mb/s 0.401ms/op
+1212.021: Shutting down processes
+
+===== varmail_run_005.log =====
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.003: Varmail Version 3.0 personality successfully loaded
+0.003: Populating and pre-allocating filesets
+0.018: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.018: Removing bigfileset tree (if exists)
+0.021: Pre-allocating directories in bigfileset tree
+3.116: Pre-allocating files in bigfileset tree
+9.760: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+9.760: Population and pre-allocation of filesets completed
+9.760: Starting 1 filereader instances
+10.764: Running...
+1210.872: Run took 1200 seconds...
+1210.872: Per-Operation Breakdown
+closefile4           910798ops      759ops/s   0.0mb/s    0.013ms/op [0.001ms - 0.818ms]
+readfile4            910798ops      759ops/s  12.6mb/s    0.133ms/op [0.017ms - 2.716ms]
+openfile4            910798ops      759ops/s   0.0mb/s    0.433ms/op [0.082ms - 29.583ms]
+closefile3           910798ops      759ops/s   0.0mb/s    0.017ms/op [0.001ms - 0.776ms]
+fsyncfile3           910798ops      759ops/s   0.0mb/s    1.156ms/op [0.068ms - 53.558ms]
+appendfilerand3      910799ops      759ops/s   5.9mb/s    0.258ms/op [0.032ms - 36.262ms]
+readfile3            910800ops      759ops/s  12.7mb/s    0.131ms/op [0.015ms - 3.845ms]
+openfile3            910800ops      759ops/s   0.0mb/s    0.434ms/op [0.084ms - 33.172ms]
+closefile2           910800ops      759ops/s   0.0mb/s    0.017ms/op [0.002ms - 9.006ms]
+fsyncfile2           910800ops      759ops/s   0.0mb/s    1.273ms/op [0.433ms - 68.091ms]
+appendfilerand2      910801ops      759ops/s   5.9mb/s    0.132ms/op [0.034ms - 24.331ms]
+createfile2          910801ops      759ops/s   0.0mb/s    0.660ms/op [0.130ms - 41.223ms]
+deletefile1          910801ops      759ops/s   0.0mb/s    0.597ms/op [0.110ms - 67.244ms]
+1210.872: IO Summary: 11840392 ops 9866.111 ops/s 1518/1518 rd/wr  37.1mb/s 0.404ms/op
+1210.872: Shutting down processes
+

@@ -1,0 +1,17 @@
+root = "anti_tampering_layer"
+log_mode = "disabled" # options (case insensitive): disabled, screen, error, warn, info, debug #
+
+[local_layer]
+type = "local"
+
+[anti_tampering_layer]
+type = "anti_tampering"
+hashes_storage = "/" # Note: Use your absolute path here #
+hash_layer = "ipfs_layer"
+data_layer = "local_layer"
+algorithm = "sha256"
+
+[ipfs_layer]
+type = "ipfs_opendal"
+api_endpoint = "http://127.0.0.1:5001" # change to port used in the ipfs daemon
+root = "/ipfs"

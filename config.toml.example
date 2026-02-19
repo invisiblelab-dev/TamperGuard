@@ -1,0 +1,49 @@
+root = "layer_1"
+log_mode = "debug" # options (case insensitive): disabled, screen, error, warn, info, debug #
+
+[layer_1]
+type = "anti_tampering"
+hashes_storage = "/home/user/Modular-IO-Lib/examples/fuse/hashes" # Note: Use your absolute path here #
+hash_layer = "layer_2"
+data_layer = "layer_3"
+algorithm = "sha256" # options (case insensitive): sha256, sha512 - defaults to sha256 if not specified #
+
+[layer_2]
+type = "demultiplexer"
+layers = ["layer_4", "layer_5", "layer_6"]
+
+[layer_2.options]
+enforced_layers = ["layer_4"]
+passthrough_reads = ["layer_5"]
+passthrough_writes = ["layer_6"]
+
+[layer_3]
+type = "local"
+
+[layer_4]
+type = "s3_opendal"
+endpoint = "some_endpoint"
+access_key_id = "some_key_id"
+secret_access_key = "some_secret_key"
+bucket = "some_bucket"
+region = "some_region"
+root = "some_root"
+
+[layer_5]
+type = "s3_opendal"
+endpoint = "some_other_endpoint"
+access_key_id = "some_other_key_id"
+secret_access_key = "some_other_secret_key"
+bucket = "some_other_bucket"
+region = "some_other_region"
+root = "some_other_root"
+
+[layer_6]
+type = "solana"
+keypair_path= "some_keypair_path"
+rpc_url = "some_rpc_url"
+
+[layer_7]
+type = "ipfs_opendal"
+api_endpoint = "http://127.0.0.1:5001"
+root = "/ipfs/"

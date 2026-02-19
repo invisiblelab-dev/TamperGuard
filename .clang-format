@@ -1,0 +1,4 @@
+---
+InsertNewlineAtEOF: true
+KeepEmptyLinesAtEOF: true
+CommentPragmas: '^ IWYU pragma:' 

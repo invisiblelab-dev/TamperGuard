@@ -1,0 +1,32 @@
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Populating and pre-allocating filesets
+0.008: bigfileset populated: 10000 files, avg. dir. width = 1, avg. dir. depth = inf, 0 leafdirs, 1250.000MB total size
+0.008: Removing bigfileset tree (if exists)
+0.010: Pre-allocating directories in bigfileset tree
+3.437: Pre-allocating files in bigfileset tree
+10.617: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+10.617: Population and pre-allocation of filesets completed
+sh: line 1: /proc/sys/vm/drop_caches: Permission denied
+Running fileserver.f for 1200 seconds...
+10.661: Attempting to create fileset more than once, ignoring
+10.661: Starting 1 filereader instances
+11.665: Running...
+1211.768: Run took 1200 seconds...
+1211.768: Per-Operation Breakdown
+statfile1            2110362ops     1758ops/s   0.0mb/s    0.138ms/op [0.044ms - 22.558ms]
+deletefile1          2110362ops     1758ops/s   0.0mb/s    0.350ms/op [0.122ms - 66.947ms]
+closefile3           2110362ops     1758ops/s   0.0mb/s    0.009ms/op [0.001ms - 2.491ms]
+readfile1            2110362ops     1758ops/s 233.5mb/s    0.211ms/op [0.086ms - 22.448ms]
+openfile2            2110362ops     1758ops/s   0.0mb/s    0.428ms/op [0.186ms - 65.430ms]
+closefile2           2110362ops     1758ops/s   0.0mb/s    0.008ms/op [0.001ms - 0.931ms]
+appendfilerand1      2110362ops     1758ops/s  13.7mb/s    0.112ms/op [0.030ms - 64.735ms]
+openfile1            2110362ops     1758ops/s   0.0mb/s    0.431ms/op [0.178ms - 65.958ms]
+closefile1           2110362ops     1758ops/s   0.0mb/s    0.010ms/op [0.001ms - 2.221ms]
+wrtfile1             2110362ops     1758ops/s 219.8mb/s    0.268ms/op [0.130ms - 53.556ms]
+createfile1          2110364ops     1758ops/s   0.0mb/s    0.298ms/op [0.107ms - 65.991ms]
+1211.768: IO Summary: 23213984 ops 19343.330 ops/s 1758/3517 rd/wr 467.0mb/s 0.206ms/op
+1211.768: Shutting down processes
