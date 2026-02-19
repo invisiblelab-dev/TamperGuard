@@ -66,14 +66,13 @@ ipfs daemon
 ```
 
 ### 5. Run TamperGuard prototype:
-The default mount point is examples/fuse/mount_point. You can change it by running:
 ```bash
 make examples/fuse/run
 ```
 
 The default mount point is examples/fuse/mount_point. You can change it by running:
 ```bash
-make examples/fuse/run MOUNT_POINT=/path/to/mount
+make examples/fuse/run MOUNT_POINT=/path/to/mount BACKEND_DATA=/path/to/backend_data
 ```
 More info on examples can be found in examples/fuse/README.md.
 
