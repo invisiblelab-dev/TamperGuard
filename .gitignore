@@ -1,0 +1,85 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Test executables (no extension) - but keep source files
+tests/**/test_*
+!tests/**/*.c
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Build directories
+build/
+bin/
+obj/
+
+# Dependency directories
+libs/
+vendor/
+
+# Built library files in lib/ directory
+lib/*.so
+lib/*.a
+lib/*.dylib
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+compile_commands.json
+.cache/
+
+# Environment files
+.env
+*.toml
+
+# Generated files
+logs/*
+*.log
+examples/fuse/mount_point/*
+examples/fuse/backend_data/*
+testdb
+fio_testfile
+# MkDocs generated directories
+docs/mkdocs/
+# docs/mkdocs_static/    # COMMIT static docs (commented out)
+
+# datasets
+datasets/*
+
+# benchmark results
+benchmark_results/*
+
+# virtual environment
+venv/
