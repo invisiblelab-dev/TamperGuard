@@ -1,0 +1,18 @@
+[submodule "lib/zlog"]
+	path = lib/zlog
+	url = https://github.com/HardySimpson/zlog.git
+[submodule "lib/tomlc17"]
+	path = lib/tomlc17
+	url = https://github.com/cktan/tomlc17.git
+[submodule "lib/invisible-storage-bindings"]
+	path = lib/invisible-storage-bindings
+	url = https://github.com/invisiblelab-dev/invisible-storage-bindings.git
+[submodule "lib/uthash"]
+	path = lib/uthash
+	url = https://github.com/troydhanson/uthash.git
+[submodule "lib/CacheLib"]
+	path = lib/CacheLib
+	url = https://github.com/dsrhaslab/CacheLib.git
+[submodule "lib/rocksdb"]
+	path = lib/rocksdb
+	url = https://github.com/facebook/rocksdb.git
