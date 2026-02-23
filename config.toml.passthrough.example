@@ -1,5 +1,5 @@
 root = "local_layer"
-log_mode = "disabled" # options (case insensitive): disabled, screen, error, warn, info, debug #
+log_mode = "warn" # options (case insensitive): disabled, screen, error, warn, info, debug #
 
 [local_layer]
 type = "local"

@@ -59,6 +59,7 @@ cp config.toml.ipfs.example config.toml
 
 Install and run IPFS kubo v0.39.0 (https://docs.ipfs.tech/install/command-line/#install-official-binary-distributions):
 ```bash
+# for arm use: wget https://github.com/ipfs/kubo/releases/download/v0.39.0/kubo_v0.39.0_linux-arm64.tar.gz
 wget https://dist.ipfs.tech/kubo/v0.39.0/kubo_v0.39.0_linux-amd64.tar.gz
 tar -xvzf kubo_v0.39.0_linux-amd64.tar.gz
 cd kubo
@@ -72,12 +73,21 @@ ipfs --version
 
 Run the ipfs daemon in another terminal:
 ```bash
+ipfs init
 ipfs daemon
 ```
 
 ### 5. Run TamperGuard prototype:
 ```bash
 make examples/fuse/run
+# or
+make examples/fuse/run/daemon
+
+# to stop daemon, run:
+make examples/fuse/stop
+
+# and/or:
+sudo umount examples/fuse/mount_point
 ```
 
 The default mount point is examples/fuse/mount_point. You can change it by running:
@@ -93,7 +103,13 @@ Install PostgreSQL:
 sudo apt install postgresql
 ```
 
-Initialize the PostgreSQL data directory (binaries are typically located in /usr/bin, e.g. /usr/bin/initdb):
+Initialize the PostgreSQL data directory from inside TamperGuard directory
+> **Note**: PostgreSQL binaries are typically located in:
+> - `/usr/bin/` (default on most Linux distributions)
+> - `/usr/lib/postgresql/16/bin/` (Ubuntu/Debian specific version)
+> - `/lib/postgresql/16/bin/` (alternative location)
+>
+> Adjust the paths below according to your PostgreSQL installation.
 ```bash
 /usr/bin/initdb -D examples/fuse/mount_point/ --username=postgres
 ```
@@ -103,9 +119,19 @@ Start the PostgreSQL server:
 /usr/bin/pg_ctl -D examples/fuse/mount_point/ start
 ```
 
-If this step isn't working, remember to change the `unix_socket_directories` path to use `/tmp`, and create the folder with:
+If this step isn't working, remember to change the `unix_socket_directories` path to use `/tmp` (on postgresql.conf file), and create the folder with:
 ```bash
 mkdir -p /tmp/postgresql && chmod 1777 /tmp/postgresql
+```
+
+If still not working, verify you don't have a server running on the port 5432. Usually, there's it runs by default after installation. To stop it, run:
+```bash
+sudo systemctl stop postgresql
+```
+
+If still not working, check the logfile for errors:
+```bash
+cat logfile
 ```
 
 Run the PostgreSQL pgbench mix read/write workload:
@@ -122,6 +148,9 @@ Run the PostgreSQL pgbench write-only workload:
 ```bash
 ./scripts/postgresql/pgbench_workload.sh --data-dir examples/fuse/mount_point --postgres-bin /usr/bin --db-user postgres --db-name mydb --duration 900 --repeats 5 --write-only 1
 ```
+
+*Note: Clean up the mount_point and backend_data directories between tests with different configurations.*
+
 #### 6.1. Run filebench workload:
 Install filebench:
 ```bash
