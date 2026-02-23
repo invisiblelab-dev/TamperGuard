@@ -25,9 +25,6 @@ LOG_DIR := $(ROOT_DIR)/logs
 SHARED_BUILD_DIR := $(BUILD_DIR)/shared
 UTILS_BUILD_DIR := $(SHARED_BUILD_DIR)/utils
 SERVICES_BUILD_DIR := $(BUILD_DIR)/services
-# RocksDB library paths
-ROCKSDB_DIR = $(ROOT_DIR)/lib/rocksdb
-ROCKSDB_INCLUDE_PATH = $(ROCKSDB_DIR)/include/
 
 # Zlog library paths (defined early for use in BASE_INCLUDES)
 ZLOG_DIR = $(ROOT_DIR)/lib/zlog
@@ -45,7 +42,7 @@ CC := gcc
 CPP := g++
 BASE_CFLAGS := -Wall -g -Wno-unknown-pragmas
 BASE_INCLUDES := -I$(ROOT_DIR) -I$(ROOT_DIR)/layers -I$(ROOT_DIR)/shared \
-                 -I$(ZLOG_INCLUDE_PATH) -I$(ROCKSDB_INCLUDE_PATH) -I$(LZ4_DIR)/lib -I$(ZSTD_DIR)/lib \
+                 -I$(ZLOG_INCLUDE_PATH) -I$(LZ4_DIR)/lib -I$(ZSTD_DIR)/lib \
                  $(shell pkg-config --cflags glib-2.0)
 
 # Common dependencies
@@ -67,8 +64,7 @@ SHARED_DEPS = $(ROOT_DIR)/lib.h \
               $(ROOT_DIR)/shared/utils/hasher/hasher.h \
               $(ROOT_DIR)/shared/utils/hasher/evp.h \
               $(ROOT_DIR)/shared/utils/hasher/sha256_hasher.h \
-              $(ROOT_DIR)/shared/utils/hasher/sha512_hasher.h \
-              $(ROOT_DIR)/services/metadata.h
+              $(ROOT_DIR)/shared/utils/hasher/sha512_hasher.h
 
 # Common shared objects
 SHARED_OBJS = $(ROOT_BUILD_DIR)/lib.o \
@@ -101,7 +97,6 @@ SHARED_OBJS = $(ROOT_BUILD_DIR)/lib.o \
               $(UTILS_BUILD_DIR)/hasher/evp.o \
               $(UTILS_BUILD_DIR)/hasher/sha256_hasher.o \
               $(UTILS_BUILD_DIR)/hasher/sha512_hasher.o \
-              $(SERVICES_BUILD_DIR)/libmetadata.so \
 
 # External library paths
 INVISIBLE_LIB_DIR = $(ROOT_DIR)/lib/invisible-storage-bindings
@@ -109,7 +104,7 @@ INVISIBLE_TARGET_DIR = $(INVISIBLE_LIB_DIR)/target/release
 INVISIBLE_LIB_PATH = $(INVISIBLE_TARGET_DIR)
 
 # Base library configuration - link to built libraries
-BASE_LIBS = `pkg-config --cflags --libs glib-2.0` -L$(ZLOG_LIB_PATH) -lzlog -L$(SERVICES_BUILD_DIR) -lmetadata -L$(LZ4_LIB_PATH) -llz4 -L$(ZSTD_LIB_PATH) -lzstd -lpthread -lcrypto -lcurl -Wl,-rpath=$(ZLOG_LIB_PATH):$(LZ4_LIB_PATH):$(ZSTD_LIB_PATH):$(LAYERS_BUILD_DIR):$(SERVICES_BUILD_DIR)
+BASE_LIBS = `pkg-config --cflags --libs glib-2.0` -L$(ZLOG_LIB_PATH) -lzlog -L$(LZ4_LIB_PATH) -llz4 -L$(ZSTD_LIB_PATH) -lzstd -lpthread -lcrypto -lcurl -Wl,-rpath=$(ZLOG_LIB_PATH):$(LZ4_LIB_PATH):$(ZSTD_LIB_PATH):$(LAYERS_BUILD_DIR)
 
 #==============================================================================
 # Common Build Rules for Shared Objects
@@ -164,7 +159,7 @@ endef
 
 # Export common variables
 export CC BASE_CFLAGS BASE_INCLUDES
-export BUILD_DIR BIN_DIR LIB_DIR BUILD_LIB_DIR LAYERS_BUILD_DIR ROOT_BUILD_DIR LOG_DIR SERVICES_BUILD_DIR ROCKSDB_DIR
+export BUILD_DIR BIN_DIR LIB_DIR BUILD_LIB_DIR LAYERS_BUILD_DIR ROOT_BUILD_DIR LOG_DIR SERVICES_BUILD_DIR
 export SHARED_DEPS SHARED_OBJS BASE_LIBS
 export INVISIBLE_LIB_PATH
 

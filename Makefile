@@ -152,20 +152,6 @@ $(UTILS_BUILD_DIR)/hasher/sha512_hasher.o: shared/utils/hasher/sha512_hasher.c $
 	$(CC) -c -o $@ $< $(PIC_CFLAGS)
 
 
-$(SERVICES_BUILD_DIR)/metadata.o: services/metadata.c $(SHARED_DEPS)
-	mkdir -p $(dir $@)
-	$(CC) -c -o $@ $< \
-	$(PIC_CFLAGS) \
-    -I$(ROCKSDB_INCLUDE_PATH) 
-
-
-ROCKSDB_SO := $(ROCKSDB_DIR)/librocksdb.so
-$(SERVICES_BUILD_DIR)/libmetadata.so: $(SERVICES_BUILD_DIR)/metadata.o $(ROCKSDB_SO) 
-	$(CPP) -shared -o $@ $(SERVICES_BUILD_DIR)/metadata.o \
-		-L$(ROCKSDB_DIR) -lrocksdb \
-		-Wl,-rpath,'$$ORIGIN/../../lib/rocksdb' \
-		-Wl,--enable-new-dtags
-
 # Link shared library
 $(LIBMODULAR_SO): $(SHARED_OBJS)
 	mkdir -p $(dir $@)
@@ -180,7 +166,6 @@ $(LIBMODULAR_SO): $(SHARED_OBJS)
 # Shared Targets
 #------------------------------------------------------------------------------
 
-METADATA_SO := $(SERVICES_BUILD_DIR)/libmetadata.so
 shared/build: zlog/build lz4/build zstd/build $(LIBMODULAR_SO)
 	@echo "Shared library $(LIBMODULAR_SO) built successfully"
 
@@ -188,27 +173,11 @@ shared/build: zlog/build lz4/build zstd/build $(LIBMODULAR_SO)
 # Clean shared objects
 shared/clean: lz4/clean zstd/clean
 	@echo "Cleaning shared objects and library..."
-	rm -f $(SHARED_OBJS) $(LIBMODULAR_SO) $(SERVICES_BUILD_DIR)/metadata.o $(SERVICES_BUILD_DIR)/libmetadata.so
+	rm -f $(SHARED_OBJS) $(LIBMODULAR_SO)
 
 #==============================================================================
 # External Libraries
 #==============================================================================
-
-# RocksDB targets
-ROCKSDB_DIR = $(ROOT_DIR)/lib/rocksdb
-$(ROCKSDB_SO):
-	@if [ ! -d "$(ROCKSDB_DIR)" ]; then \
-		echo "Error: rocksdb submodule not found. Run 'git submodule update --init --recursive'"; \
-		exit 1; \
-	fi
-
-	@if [ ! -f "$(ROCKSDB_DIR)/librocksdb.so" ]; then \
-		echo "Building RocksDB in $(ROCKSDB_DIR)"; \
-		(cd $(ROCKSDB_DIR) && make -j2 shared_lib DISABLE_JEMALLOC=1 DISABLE_WARNING_AS_ERROR=1 EXTRA_CXXFLAGS="-Wno-error=unused-parameter"); \
-		echo "RocksDB build complete" \
-	else \
-		echo "RocksDB already built"; \
-	fi
 
 #------------------------------------------------------------------------------
 # Invisible Storage
@@ -501,8 +470,7 @@ submodules/fetch:
 		lib/tomlc17 \
 		lib/uthash \
 		lib/lz4 \
-		lib/zstd \
-		lib/rocksdb
+		lib/zstd
 ifeq ($(BUILD_INVISIBLE),1)
 	@echo "Fetching invisible-storage-bindings submodule (BUILD_INVISIBLE=1)..."
 	git submodule update --init --recursive lib/invisible-storage-bindings

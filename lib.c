@@ -1,7 +1,6 @@
 #include "lib.h"
 #include "shared/types/layer_context.h"
 #include <dlfcn.h>
-#include <services/metadata.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

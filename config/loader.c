@@ -3,7 +3,6 @@
 #include "../shared/types/layer_context.h"
 #include "builder.h"
 #include "parser.h"
-#include "services/metadata.h"
 #include "utils.h"
 
 /**
@@ -38,7 +37,6 @@ LayerContext load_config_toml(char *filepath) {
   // Initialize logging
   LOG_INIT(config.log_mode);
   DEBUG_MSG("Log mode integer: %d", config.log_mode);
-  metadata_init(config.serviceConfig);
   // Build the layer tree starting from root
   LayerContext result = build_layer_tree(&config);
 

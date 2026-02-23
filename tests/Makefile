@@ -30,7 +30,6 @@ UNIT_OBJS = $(TESTS_BUILD_DIR)/layers/block_align/test_block_align_config.o \
             $(TESTS_BUILD_DIR)/layers/demultiplexer/test_demultiplexer.o \
             $(TESTS_BUILD_DIR)/shared/utils/hasher/test_hasher.o \
             $(TESTS_BUILD_DIR)/shared/utils/hasher/test_sha256.o \
-	    $(TESTS_BUILD_DIR)/services/test_metadata.o \
             $(TESTS_BUILD_DIR)/shared/utils/hasher/test_sha512.o
 
 # Test binaries
@@ -48,7 +47,6 @@ UNIT_BINS = $(TESTS_BIN_DIR)/layers/block_align/test_block_align_config \
             $(TESTS_BIN_DIR)/layers/compression/test_sparse_block \
             $(TESTS_BIN_DIR)/shared/utils/hasher/test_hasher \
             $(TESTS_BIN_DIR)/shared/utils/hasher/test_sha256 \
-	    $(TESTS_BIN_DIR)/services/test_metadata \
             $(TESTS_BIN_DIR)/shared/utils/hasher/test_sha512
 
 
@@ -68,7 +66,6 @@ TEST_DEPS = $(ROOT_DIR)/lib.h \
             $(ROOT_DIR)/shared/utils/hasher/sha256_hasher.h \
             $(ROOT_DIR)/shared/utils/hasher/sha512_hasher.h \
             $(ROOT_DIR)/lib/tomlc17/src/tomlc17.h \
-	    $(ROOT_DIR)/services/metadata.h \
             $(TEST_DIR)/mock_layer.h
 
 # Mock object
@@ -159,22 +156,6 @@ $(TESTS_BIN_DIR)/layers/read_cache/test_read_cache: \
 $(TESTS_BUILD_DIR)/layers/read_cache/test_read_cache.o: $(UNIT_DIR)/layers/read_cache/test_read_cache.c $(TEST_DEPS)
 	mkdir -p $(dir $@)
 	$(CC) -c -o $@ $< $(PIC_CFLAGS)
-
-
-$(TESTS_BIN_DIR)/services/test_metadata: \
-	$(TESTS_BUILD_DIR)/services/test_metadata.o \
-	$(ROOT_BUILD_DIR)/logdef.o
-	mkdir -p $(dir $@)
-	$(CPP) -o $@ $^ $(LIBS) \
-		-L$(SERVICES_BUILD_DIR) -lmetadata \
-		-Wl,-rpath,'$$ORIGIN/../../../build/services'
-
-
-$(TESTS_BUILD_DIR)/services/test_metadata.o: \
-	$(UNIT_DIR)/services/test_metadata.c $(TEST_DEPS)
-	mkdir -p $(dir $@)
-	$(CC) -c -o $@ $< $(PIC_CFLAGS)
-
 
 
 $(TESTS_BIN_DIR)/layers/anti_tampering/test_anti_tampering: \
