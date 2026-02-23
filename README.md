@@ -1,8 +1,10 @@
 # TamperGuard Library
 
-TamperGuard is part of a bigger project with a lot of features that will soon be published in different academic papers. This README first focus on a quick start guide on how to run the TamperGuard prototype with the configurations used in the submitted paper, with the same testing scripts.
+TamperGuard is a modular I/O library that adds anti-tampering detection to existing applications at the filesystem level. This prototype uses FUSE to intercept operations like open, close, read, write, and truncate, and adds anti-tampering guarantees by computing an hash of the file data and storing it in a separate storage backend. On every file access, the hash is computed again and compared to the stored hash. If the hashes do not match, a log message is written alerting the user to a possible tampering detection.
 
-The rest of the README will focus on the other features of the project that are on testing at the moment.
+The storage backend can be specified in the configuration file. There are three given options: local storage, IPFS storage, and a Solana blockchain. The latter, is not yet tested in a real case scenario due to its performance limitations and is only briefly mentioned in the TamperGuard paper. The library that is reponsible for the storage services integration is invisible-storage(https://github.com/invisiblelab-dev/invisible-storage), which has bindings to C in invisible-storage-bindings(https://github.com/invisiblelab-dev/invisible-storage-bindings).
+
+TamperGuard is part of a bigger Modular I/O project with additional layers and features that will be published soon. This repository focuses on a quick-start guide for running the TamperGuard prototype with the configurations used in the submitted paper, including the same testing scripts. The rest of the repository covers other features that are currently in progress.
 
 ## Quick Start Guide for TamperGuard
 Make sure you have the following packages installed:
