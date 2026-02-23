@@ -22,14 +22,22 @@ sudo apt install libfuse3-dev fuse3
 ```
 
 ### 2. Installing Rust
+Use **rustup** (required for building invisible-storage-bindings; system packages like `apt install rustc cargo` are often too old and can fail on the submodule's `Cargo.lock`):
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sudo apt install rustc cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 ```
+
 ### 3. Building TamperGuard prototype
 ```bash
 git submodule update --init --recursive
 make build BUILD_INVISIBLE=1
+```
+
+#### 3.1 Verify Rust installation:
+```bash
+rustc --version
+cargo --version
 ```
 
 ### 4. Create your configuration:
