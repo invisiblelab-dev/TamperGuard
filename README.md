@@ -412,7 +412,7 @@ docs/
 
 ## License
 
-This project is licensed under the terms specified in the LICENSE file.
+This project is licensed under the MIT License. See `LICENSE`.
 
 ---
 
