@@ -17,7 +17,7 @@ EXAMPLE_BIN_DIR := $(BIN_DIR)/examples/fuse
 CFLAGS := $(BASE_CFLAGS) $(BASE_INCLUDES)
 
 # Example-specific libraries
-BASE_FUSE_LIBS := $(BASE_LIBS) `pkg-config fuse3 --cflags --libs` -lpthread -lcrypto -L$(BUILD_LIB_DIR) -lmodular -L$(SERVICES_BUILD_DIR) -lmetadata -Wl,-rpath=$(BUILD_LIB_DIR):$(SERVICES_BUILD_DIR) 
+BASE_FUSE_LIBS := $(BASE_LIBS) `pkg-config fuse3 --cflags --libs` -lpthread -lcrypto -L$(BUILD_LIB_DIR) -lmodular -Wl,-rpath=$(BUILD_LIB_DIR)
 # Add invisible library if BUILD_INVISIBLE is set
 ifeq ($(BUILD_INVISIBLE),1)
 LIBS := $(BASE_FUSE_LIBS) -L$(INVISIBLE_TARGET_DIR) -linvisible_storage_bindings -Wl,-rpath=$(INVISIBLE_LIB_PATH)
@@ -35,11 +35,6 @@ ifdef MODULAR_IO_CONFIG_PATH
     # Path is relative, make it absolute relative to ROOT_DIR
     MODULAR_IO_CONFIG_PATH := $(abspath $(ROOT_DIR)/$(MODULAR_IO_CONFIG_PATH))
   endif
-endif
-
-# Add CacheLib wrapper if BUILD_CACHELIB is set
-ifeq ($(BUILD_CACHELIB),1)
-LIBS += -L$(LAYERS_BUILD_DIR) -lcache_lib_wrapper -Wl,-rpath=$(LAYERS_BUILD_DIR)
 endif
 
 # Example object files
