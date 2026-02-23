@@ -204,7 +204,7 @@ $(ROCKSDB_SO):
 
 	@if [ ! -f "$(ROCKSDB_DIR)/librocksdb.so" ]; then \
 		echo "Building RocksDB in $(ROCKSDB_DIR)"; \
-		(cd $(ROCKSDB_DIR) && make -j2 shared_lib DISABLE_JEMALLOC=1); \
+		(cd $(ROCKSDB_DIR) && make -j2 shared_lib DISABLE_JEMALLOC=1 DISABLE_WARNING_AS_ERROR=1); \
 		echo "RocksDB build complete" \
 	else \
 		echo "RocksDB already built"; \
