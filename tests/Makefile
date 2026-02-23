@@ -311,14 +311,8 @@ $(TESTS_BUILD_DIR)/shared/utils/hasher/test_sha512.o: $(UNIT_DIR)/shared/utils/h
 # Test Targets
 #==============================================================================
 
-# Optional CacheLib integration for tests
-ifeq ($(BUILD_CACHELIB),1)
-TEST_EXTRA_DEPS := cache_lib/build
-TEST_LD_PATH_SUFFIX := :$(LAYERS_BUILD_DIR):$(CACHELIB_DIR)/opt/cachelib/lib
-else
 TEST_EXTRA_DEPS :=
 TEST_LD_PATH_SUFFIX :=
-endif
 
 # Build all tests - add dependency on external libraries
 tests/build: lz4/build zstd/build $(TEST_EXTRA_DEPS) $(UNIT_BINS)

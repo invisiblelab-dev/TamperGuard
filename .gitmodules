@@ -10,9 +10,6 @@
 [submodule "lib/uthash"]
 	path = lib/uthash
 	url = https://github.com/troydhanson/uthash.git
-[submodule "lib/CacheLib"]
-	path = lib/CacheLib
-	url = https://github.com/dsrhaslab/CacheLib.git
 [submodule "lib/rocksdb"]
 	path = lib/rocksdb
 	url = https://github.com/facebook/rocksdb.git

@@ -14,7 +14,6 @@ PIC_CFLAGS := $(CFLAGS) -fPIC
 
 # Optional build flags
 BUILD_INVISIBLE ?= 0 # 1: For Solana and AWS S3 storage support.
-BUILD_CACHELIB ?= 0  # 1: Build Facebook CacheLib and enable cache wrapper
 
 # Export variables for sub-makefiles
 export CFLAGS LIBS
@@ -124,23 +123,6 @@ $(LAYERS_BUILD_DIR)/read_cache.o: layers/cache/read_cache/read_cache.c $(SHARED_
 	mkdir -p $(dir $@)
 	$(CC) -c -o $@ $< $(PIC_CFLAGS)
 
-# A C++ wrapper of the cacheLib library for our cache_layer
-$(LAYERS_BUILD_DIR)/cache_lib_wrapper.o: layers/cache/wrapper/cache_lib_wrapper.cpp $(SHARED_DEPS)
-	$(CPP) -c -o $@ $< \
-	$(PIC_CFLAGS) \
-	-I./lib/CacheLib/opt/cachelib/include \
-	-I/usr/include/event2 \
-	-I./lib/CacheLib/cachelib/external/fmt/include \
-	-I./lib/CacheLib/cachelib/external/googletest/googletest/include
-
-
-
-$(LAYERS_BUILD_DIR)/libcache_lib_wrapper.so: $(LAYERS_BUILD_DIR)/cache_lib_wrapper.o
-	$(CPP) -shared -o $@ $^ \
-		-L./lib/CacheLib/opt/cachelib/lib -lcachelib_allocator -lcachelib_common -lcachelib_datatype -levent \
-		-Wl,-rpath,'$$ORIGIN/../../lib/CacheLib/opt/cachelib/lib' \
-		-Wl,--enable-new-dtags
-
 $(UTILS_BUILD_DIR)/parallel.o: shared/utils/parallel.c $(SHARED_DEPS)
 	mkdir -p $(dir $@)
 	$(CC) -c -o $@ $< $(PIC_CFLAGS)
@@ -198,38 +180,19 @@ $(LIBMODULAR_SO): $(SHARED_OBJS)
 # Shared Targets
 #------------------------------------------------------------------------------
 
-# Build shared objects
-ifeq ($(BUILD_CACHELIB),1)
-SHARED_EXTRA_DEPS := $(LAYERS_BUILD_DIR)/libcache_lib_wrapper.so
-else
-SHARED_EXTRA_DEPS :=
-endif
 METADATA_SO := $(SERVICES_BUILD_DIR)/libmetadata.so
-shared/build: zlog/build lz4/build zstd/build $(LIBMODULAR_SO) $(SHARED_EXTRA_DEPS) 
+shared/build: zlog/build lz4/build zstd/build $(LIBMODULAR_SO)
 	@echo "Shared library $(LIBMODULAR_SO) built successfully"
 
 
 # Clean shared objects
 shared/clean: lz4/clean zstd/clean
 	@echo "Cleaning shared objects and library..."
-	rm -f $(SHARED_OBJS) $(LIBMODULAR_SO) $(LAYERS_BUILD_DIR)/libcache_lib_wrapper.so $(LAYERS_BUILD_DIR)/cache_lib_wrapper.o $(SERVICES_BUILD_DIR)/metadata.o $(SERVICES_BUILD_DIR)/libmetadata.so
+	rm -f $(SHARED_OBJS) $(LIBMODULAR_SO) $(SERVICES_BUILD_DIR)/metadata.o $(SERVICES_BUILD_DIR)/libmetadata.so
 
 #==============================================================================
 # External Libraries
 #==============================================================================
-
-cache_lib/build:
-	@if [ ! -d "$(CACHELIB_DIR)" ]; then \
-		echo "Error: CacheLib submodule not found. Run 'git submodule update --init --recursive'"; \
-		exit 1; \
-	fi
-
-	@if [ ! -d "$(CACHELIB_DIR)/opt/cachelib/lib" ]; then \
-		echo "Building CacheLib in $(CACHELIB_DIR) (This operation takes a long period of time and requires at least 2 available threads)"; \
-		(cd $(CACHELIB_DIR) && contrib/build.sh -j 2 -v); \
-	else \
-		echo "CacheLib already built"; \
-	fi
 
 # RocksDB targets
 ROCKSDB_DIR = $(ROOT_DIR)/lib/rocksdb
@@ -470,16 +433,14 @@ docs/clean:
 # Help target
 help:
 	@echo "Available targets:"
-	@echo "  build                       - Build all components (optional: invisible-storage-bindings, CacheLib)"
+	@echo "  build                       - Build all components (optional: invisible-storage-bindings)"
 	@echo ""
 	@echo "Build flags:"
 	@echo "  BUILD_INVISIBLE=1           - Include invisible-storage-bindings in build"
-	@echo "  BUILD_CACHELIB=1            - Include CacheLib and cache wrapper in build"
 	@echo ""
 	@echo "Examples:"
-	@echo "  make build                  - Build without invisible-storage-bindings and CacheLib"
+	@echo "  make build                  - Build without invisible-storage-bindings"
 	@echo "  make build BUILD_INVISIBLE=1 - Build with invisible-storage-bindings"
-	@echo "  make build BUILD_CACHELIB=1  - Build with CacheLib and cache wrapper"
 	@echo "  clean                       - Clean all build artifacts, excluding the rust library binaries"
 	@echo "  clean/logs                  - Clean all logs"
 	@echo "  clean/all                   - Clean all build artifacts, logs, and rust library (submodules preserved)"
@@ -490,7 +451,6 @@ help:
 	@echo "  shared/clean                - Clean shared objects only (layers/*.o and lib.o)"
 	@echo "  external/libinvisible/build - Builds the external rust invisible library"
 	@echo "  libinvisible/build          - Builds the external rust invisible library"
-	@echo "  cache_lib/build             - Builds the CacheLib library (This operation takes a long period of time and requires at least 2 available threads)"
 	@echo "  libinvisible/clean          - Cleans the external rust invisible library"
 	@echo "  zlog/build                  - Build the zlog library from submodule"
 	@echo "  zlog/clean                  - Clean the zlog library"
@@ -520,10 +480,6 @@ help:
 build:
 	@echo "Building all components..."
 	$(MAKE) submodules/fetch
-ifeq ($(BUILD_CACHELIB),1)
-	@echo "Building CacheLib..."
-	$(MAKE) cache_lib/build
-endif
 ifeq ($(BUILD_INVISIBLE),1)
 	@echo "Building invisible-storage-bindings..."
 	$(MAKE) libinvisible/build
@@ -545,10 +501,6 @@ submodules/fetch:
 		lib/tomlc17 \
 		lib/uthash \
 		lib/rocksdb
-ifeq ($(BUILD_CACHELIB),1)
-	@echo "Fetching CacheLib submodule (BUILD_CACHELIB=1)..."
-	git submodule update --init --recursive lib/CacheLib
-endif
 ifeq ($(BUILD_INVISIBLE),1)
 	@echo "Fetching invisible-storage-bindings submodule (BUILD_INVISIBLE=1)..."
 	git submodule update --init --recursive lib/invisible-storage-bindings
@@ -656,7 +608,6 @@ lint:
         shared/build shared/clean \
 				external/libinvisible/build \
         libinvisible/build libinvisible/clean \
-		cache_lib/build \
         zlog/build zlog/clean zlog/install \
         lz4/build lz4/clean \
         zstd/build zstd/clean \

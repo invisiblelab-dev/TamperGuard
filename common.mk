@@ -25,9 +25,6 @@ LOG_DIR := $(ROOT_DIR)/logs
 SHARED_BUILD_DIR := $(BUILD_DIR)/shared
 UTILS_BUILD_DIR := $(SHARED_BUILD_DIR)/utils
 SERVICES_BUILD_DIR := $(BUILD_DIR)/services
-# CacheLib library path
-CACHELIB_DIR = $(ROOT_DIR)/lib/CacheLib
-
 # RocksDB library paths
 ROCKSDB_DIR = $(ROOT_DIR)/lib/rocksdb
 ROCKSDB_INCLUDE_PATH = $(ROCKSDB_DIR)/include/
