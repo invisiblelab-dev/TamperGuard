@@ -538,8 +538,21 @@ endif
 
 # Fetch all the submodules
 submodules/fetch:
-	@echo "Fetching all submodules..."
-	git submodule update --init --recursive
+	@echo "Fetching required submodules..."
+	# Core submodules (always required)
+	git submodule update --init --recursive \
+		lib/zlog \
+		lib/tomlc17 \
+		lib/uthash \
+		lib/rocksdb
+ifeq ($(BUILD_CACHELIB),1)
+	@echo "Fetching CacheLib submodule (BUILD_CACHELIB=1)..."
+	git submodule update --init --recursive lib/CacheLib
+endif
+ifeq ($(BUILD_INVISIBLE),1)
+	@echo "Fetching invisible-storage-bindings submodule (BUILD_INVISIBLE=1)..."
+	git submodule update --init --recursive lib/invisible-storage-bindings
+endif
 
 # Clean all build artifacts
 clean:
