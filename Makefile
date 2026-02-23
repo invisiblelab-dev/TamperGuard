@@ -500,6 +500,8 @@ submodules/fetch:
 		lib/zlog \
 		lib/tomlc17 \
 		lib/uthash \
+		lib/lz4 \
+		lib/zstd \
 		lib/rocksdb
 ifeq ($(BUILD_INVISIBLE),1)
 	@echo "Fetching invisible-storage-bindings submodule (BUILD_INVISIBLE=1)..."
