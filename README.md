@@ -170,6 +170,16 @@ Run the filebench workload:
 Full example test results can be found in scripts/filebench/tamper_guard_results/README.md.
 More info on the script can be found in scripts/filebench/README.md.
 
+### 7. Run anti-tampering warning dashboard:
+```bash
+python3 scripts/anti_tampering_dashboard/app.py --log logfile
+```
+
+Then open:
+```bash
+http://127.0.0.1:8008
+```
+
 ## Project Structure
 
 ```
@@ -249,14 +259,6 @@ sudo apt install libfuse3-dev fuse3
 For more detailed installation instructions, see the [libfuse documentation](https://github.com/libfuse/libfuse).
 
 **Note**: This project is only tested on Linux systems and is not guaranteed to work on macOS or other operating systems.
-
-### Install rust
-In order to use invisible-storage, you need to install rust (v1.88.0) and cargo (v1.88.0):
-#### Ubuntu/Debian
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sudo apt install rustc cargo
-```
 
 ## Build Everything
 

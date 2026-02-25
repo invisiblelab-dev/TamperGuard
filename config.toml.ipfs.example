@@ -6,12 +6,13 @@ type = "local"
 
 [anti_tampering_layer]
 type = "anti_tampering"
-hashes_storage = "/" # Note: Use your absolute path here #
+hashes_storage = "/"
 hash_layer = "ipfs_layer"
 data_layer = "local_layer"
 algorithm = "sha256"
+mode = "file"
 
 [ipfs_layer]
 type = "ipfs_opendal"
-api_endpoint = "http://127.0.0.1:5001" # change to port used in the ipfs daemon
+api_endpoint = "http://127.0.0.1:5001"
 root = "/ipfs"

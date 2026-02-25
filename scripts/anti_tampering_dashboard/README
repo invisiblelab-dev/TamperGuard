@@ -1,0 +1,29 @@
+### Anti-tampering warning dashboard (mini app)
+
+Dependency-free mini dashboard that tails a log file and displays
+`[ANTI_TAMPERING_*]` warnings in a live-updating table.
+
+#### Run
+
+From repo root:
+
+```bash
+python3 scripts/anti_tampering_dashboard/app.py --log /home/jnuno/Modular-IO-Lib/logs/warn.log
+```
+
+Or tail the `logfile` used by `pg_ctl -l logfile ...`:
+
+```bash
+python3 scripts/anti_tampering_dashboard/app.py --log /home/jnuno/Modular-IO-Lib/logfile
+```
+
+Then open:
+
+- `http://127.0.0.1:8008`
+
+#### Notes
+
+- This parses the most common mismatch warning format and extracts:
+  `path`, `size`, `verify_fd`, `stored`, `computed`.
+- Other anti-tampering warning lines are still shown (with the raw message).
+- Keeps the last 200 warnings in the table.

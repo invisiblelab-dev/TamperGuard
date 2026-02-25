@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anti-Tampering Warnings</title>
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --panel: #101826;
+        --text: #e6edf3;
+        --muted: #9aa4b2;
+        --border: #243246;
+        --warn-bg: #2a2208;
+        --warn-border: #eab308;
+        --warn-text: #fde68a;
+        --danger-bg: #2a0f12;
+        --danger-border: #ef4444;
+        --danger-text: #fecaca;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        background: radial-gradient(1200px 600px at 20% -10%, #1b2a44 0%, transparent 60%),
+                    radial-gradient(900px 500px at 95% 0%, #2b1a44 0%, transparent 55%),
+                    var(--bg);
+        color: var(--text);
+      }
+      header {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(16, 24, 38, 0.7);
+        backdrop-filter: blur(6px);
+        position: sticky;
+        top: 0;
+      }
+      h1 { margin: 0; font-size: 18px; letter-spacing: 0.2px; }
+      .sub { margin-top: 6px; color: var(--muted); font-size: 12px; }
+      .wrap { padding: 18px 20px; }
+      .card {
+        border: 1px solid var(--border);
+        background: rgba(16, 24, 38, 0.75);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+      }
+      .table-wrap::-webkit-scrollbar {
+        height: 10px;
+      }
+      .table-wrap::-webkit-scrollbar-thumb {
+        background: rgba(154, 164, 178, 0.25);
+        border-radius: 999px;
+      }
+      .table-wrap::-webkit-scrollbar-track {
+        background: rgba(36, 50, 70, 0.2);
+      }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      /* Ensure wide columns remain usable; horizontal scroll kicks in on narrow screens */
+      table { min-width: 1500px; }
+      th, td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        font-size: 12px;
+        vertical-align: top;
+      }
+      th { color: var(--muted); font-weight: 600; }
+      tr.warn {
+        background: linear-gradient(90deg, rgba(234,179,8,0.12), rgba(234,179,8,0.06));
+        border-left: 3px solid var(--warn-border);
+      }
+      tr.danger {
+        background: linear-gradient(90deg, rgba(239,68,68,0.14), rgba(239,68,68,0.06));
+        border-left: 3px solid var(--danger-border);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(234,179,8,0.45);
+        background: rgba(234,179,8,0.10);
+        color: var(--warn-text);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .badge-danger {
+        border: 1px solid rgba(239,68,68,0.55);
+        background: rgba(239,68,68,0.12);
+        color: var(--danger-text);
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        color: #d7e3f0;
+        word-break: break-word;
+      }
+      .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .muted { color: var(--muted); }
+      .right { text-align: right; }
+      .footer {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      button {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+      button:hover { border-color: #3a4a64; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Anti-Tampering Warnings</h1>
+      <div class="sub">
+        Live tail of <span class="mono" id="source">log</span> · showing
+        <span id="count">0</span> warnings
+      </div>
+    </header>
+    <div class="wrap">
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 160px">Time</th>
+                <th style="width: 190px">Type</th>
+                <th style="width: 300px">File</th>
+                <th style="width: 90px" class="right">Size</th>
+                <th style="width: 240px">Stored</th>
+                <th style="width: 240px">Computed</th>
+                <th style="width: 220px">Hash file</th>
+                <th style="width: 360px">Message</th>
+              </tr>
+            </thead>
+            <tbody id="rows">
+              <tr>
+                <td colspan="8" class="muted">Waiting for warnings…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="muted">Tip: run with <span class="mono">--log /path/to/warn.log</span></div>
+        <div>
+          <button id="clear">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const rows = document.getElementById("rows");
+      const count = document.getElementById("count");
+      const source = document.getElementById("source");
+      const clearBtn = document.getElementById("clear");
+
+      let n = 0;
+      function inc() {
+        n += 1;
+        count.textContent = String(n);
+      }
+
+      function shortHash(h) {
+        if (!h) return "";
+        if (h.length <= 16) return h;
+        return h.slice(0, 8) + "…" + h.slice(-8);
+      }
+
+      function shortPath(p) {
+        if (!p) return "";
+        // Keep last 2 path segments: …/dir/file
+        const parts = p.split("/").filter(Boolean);
+        if (parts.length <= 2) return p;
+        return "…/" + parts.slice(-2).join("/");
+      }
+
+      function addRow(ev) {
+        // Remove placeholder row
+        if (rows.children.length === 1 && rows.children[0].children.length === 1) {
+          rows.innerHTML = "";
+        }
+
+        const tr = document.createElement("tr");
+        const sev = ev.severity || "warning";
+        tr.className = sev === "danger" ? "danger" : "warn";
+
+        const badgeClass = sev === "danger" ? "badge badge-danger" : "badge";
+        const icon = sev === "danger" ? "⛔" : "⚠︎";
+        const badge = `<span class="${badgeClass}">${icon} ${ev.tag || "ANTI_TAMPERING"}</span>`;
+
+        tr.innerHTML = `
+          <td class="mono">${ev.ts || ""}</td>
+          <td>${badge}</td>
+          <td class="mono ellipsis" title="${ev.path || ""}">${shortPath(ev.path || "")}</td>
+          <td class="right mono">${ev.size ?? ""}</td>
+          <td class="mono" title="${ev.stored || ""}">${shortHash(ev.stored)}</td>
+          <td class="mono" title="${ev.computed || ""}">${shortHash(ev.computed)}</td>
+          <td class="mono ellipsis" title="${ev.hash_path || ""}">${shortPath(ev.hash_path || "")}</td>
+          <td class="mono">${ev.message || ""}</td>
+        `;
+
+        rows.prepend(tr);
+        inc();
+
+        // keep last 200
+        while (rows.children.length > 200) {
+          rows.removeChild(rows.lastChild);
+        }
+      }
+
+      clearBtn.addEventListener("click", () => {
+        rows.innerHTML = `<tr><td colspan="8" class="muted">Cleared. Waiting for warnings…</td></tr>`;
+        n = 0;
+        count.textContent = "0";
+      });
+
+      // Start SSE
+      const es = new EventSource("/events");
+      es.addEventListener("warn", (e) => {
+        try {
+          const ev = JSON.parse(e.data);
+          addRow(ev);
+        } catch (_) {
+          // ignore
+        }
+      });
+      es.onerror = () => {
+        source.textContent = "log (disconnected)";
+      };
+      es.onopen = () => {
+        source.textContent = "log (connected)";
+      };
+    </script>
+  </body>
+</html>
+
