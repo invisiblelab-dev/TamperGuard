@@ -44,7 +44,6 @@ typedef struct layer_context {
  * by a layer in the modular I/O system.
  */
 typedef struct layer_ops {
-  void (*ldestroy)(LayerContext l);
   ssize_t (*lpread)(int fd, void *buffer, size_t nbyte, off_t offset,
                     LayerContext l);
   ssize_t (*lpwrite)(int fd, const void *buffer, size_t nbytes, off_t offset,
@@ -70,6 +69,7 @@ typedef struct layer_ops {
   int (*lfsync)(int fd, int isdatasync, LayerContext l);
   int (*lfallocate)(int fd, off_t offset, int mode, off_t length,
                     LayerContext l);
+  void (*ldestroy)(LayerContext l);
 } LayerOps;
 
 #endif /* LAYER_CONTEXT_H */
